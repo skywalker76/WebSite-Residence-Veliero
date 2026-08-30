@@ -1,0 +1,11 @@
+# Originali del cliente: binari, non si modificano, restano fuori dalla cronologia
+materiale ricevuto da tom/
+*.docx
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Segreti
+.env
+.env.*

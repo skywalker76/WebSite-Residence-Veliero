@@ -1,0 +1,99 @@
+RUOLO
+
+Agisci come analista di mercato specializzato in corporate housing, relocation, global
+mobility e business travel. Ogni affermazione deve poggiare su una fonte pubblica citabile.
+
+--------------------------------------------------
+CONTESTO
+--------------------------------------------------
+
+Cliente: due residence a SAN MAURO MARE (Emilia-Romagna, costa romagnola), aperti tutto
+l'anno, [N_APPARTAMENTI] appartamenti destinabili al long stay, [N_POSTI_LETTO] posti letto.
+Canone indicativo 1.100-1.300 EUR/mese per appartamento, tutto incluso, con fattura a
+societa'. Formula di ospitalita' temporanea mensile rinnovabile.
+
+Obiettivo: individuare INTERMEDIARI che possano prenotare appartamenti ripetutamente per
+conto dei propri clienti, con priorita' al periodo ottobre-aprile.
+
+Il cliente lavora GIA' con Gattinoni Travel Network e Uvet GBT: servono operatori
+equivalenti, complementari o concorrenti.
+
+--------------------------------------------------
+DUE CATEGORIE DA TENERE SEPARATE
+--------------------------------------------------
+
+CATEGORIA A — INTERMEDIARI DA CONTATTARE
+Operatori che cercano strutture per conto dei propri clienti aziendali:
+corporate housing companies, agenzie di relocation, global mobility providers,
+travel management company (TMC), workforce accommodation agencies, temporary housing
+companies, agenzie HR e staffing che trasferiscono personale, societa' che gestiscono
+trasferte di tecnici e operai.
+
+CATEGORIA B — PIATTAFORME SU CUI CANDIDARSI COME FORNITORE
+Marketplace e piattaforme di corporate housing dove una struttura si registra come
+supplier e riceve richieste. Non si contattano commercialmente: ci si candida.
+Esempi noti da verificare e ampliare: Homelike, Acomodeo, Apartool, e analoghi.
+
+Questa distinzione e' importante: le due categorie richiedono azioni diverse.
+Per la categoria B, cerca e riporta: requisiti di ammissione, standard minimi richiesti
+alla struttura, modello commissionale, durata minima dei soggiorni gestiti, procedura e
+URL della pagina di candidatura fornitori, copertura geografica (verifica se operano in
+Italia e specificamente fuori dalle grandi citta').
+
+Seed iniziali da usare come punto di partenza per trovare operatori analoghi:
+Gattinoni Travel Network, Uvet GBT, Professional Relo, GSH Global Solutions Hospitality,
+All In Solutions, Habitare Service, Rennovo, Apartool, Homelike, Acomodeo.
+
+--------------------------------------------------
+CRITERI DI QUALIFICAZIONE
+--------------------------------------------------
+
+Un intermediario e' rilevante solo se soddisfa TUTTI questi requisiti. Verificali:
+
+1. tratta soggiorni di durata pari o superiore a 30 giorni;
+2. lavora con strutture EXTRA-ALBERGHIERE (appartamenti, serviced apartment, residence),
+   non solo con hotel;
+3. opera in Italia, e in particolare copre o potrebbe coprire localita' fuori dalle grandi
+   aree metropolitane. Un operatore che serve esclusivamente Milano, Roma e Torino centro
+   e' poco rilevante: verificalo e segnalalo;
+4. ha clienti aziendali con esigenze plausibili in Emilia-Romagna o sulla costa adriatica.
+
+Scarta gli operatori che non soddisfano il punto 2: sono la maggioranza delle TMC
+tradizionali e non porterebbero nulla.
+
+--------------------------------------------------
+REGOLA DI VERIFICABILITA' — BLOCCANTE
+--------------------------------------------------
+
+1. Ogni operatore deve avere sito web attivo verificato, con URL.
+2. Verifica che la ragione sociale sia ATTUALE. Molti operatori del settore hanno subito
+   fusioni e rebranding (per esempio Carlson Wagonlit e' oggi CWT, HRG e' stata assorbita
+   da American Express Global Business Travel). Segnala esplicitamente ogni caso di
+   acquisizione, fusione o cambio di denominazione che rilevi, indicando l'entita' attuale.
+3. Se non riesci a verificare che un operatore sia attivo, mettilo in una lista separata
+   "DA VERIFICARE" senza punteggio.
+4. Non riportare partite IVA o dati non verificabili su fonte ufficiale.
+
+--------------------------------------------------
+OUTPUT
+--------------------------------------------------
+
+DUE TABELLE SEPARATE.
+
+Tabella A — intermediari da contattare:
+nome | sede | tipo di operatore | tratta soggiorni 30+ giorni (si'/no/non determinabile) |
+lavora con appartamenti (si'/no) | copertura geografica in Italia | tipologia di clienti |
+sito | fonte | priorita' (alta/media/bassa) | motivazione
+
+Tabella B — piattaforme su cui candidarsi:
+nome | sede | mercati coperti | opera in Italia (si'/no) | requisiti per le strutture |
+modello commissionale | durata minima soggiorni | URL pagina candidatura fornitori |
+fonte | facilita' di ammissione stimata | note
+
+Infine:
+- I 10 operatori con maggiore probabilita' di generare prenotazioni ricorrenti, motivati
+- Le 3 piattaforme su cui candidarsi per prime, con la ragione della priorita'
+- Lista "DA VERIFICARE"
+- Cosa non sei riuscito a determinare e perche'
+
+Preferisci 20 operatori verificati a 60 nomi di settore.

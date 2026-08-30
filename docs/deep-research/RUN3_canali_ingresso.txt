@@ -1,0 +1,62 @@
+RUOLO
+
+Agisci come analista di go-to-market B2B. Devi individuare COME si entra in contatto con
+le organizzazioni elencate qui sotto, non CHI ci lavora.
+
+--------------------------------------------------
+VINCOLO IMPORTANTE
+--------------------------------------------------
+
+NON cercare persone fisiche. NON riportare nomi, cognomi, indirizzi email personali o
+URL di profili LinkedIn individuali. Non sono verificabili in modo affidabile e sono dati
+personali. Se non trovi un dato aziendale pubblico, scrivi "non disponibile": non dedurlo
+e non ricostruirlo.
+
+--------------------------------------------------
+ORGANIZZAZIONI DA ANALIZZARE
+--------------------------------------------------
+
+[INSERIRE QUI L'ELENCO DEI TIER 1 E TIER 2 EMERSI DAI RUN 1 E 2]
+
+--------------------------------------------------
+COSA CERCARE PER CIASCUNA
+--------------------------------------------------
+
+1. RUOLI DECISIONALI
+   Quali 2-3 funzioni aziendali, in un'organizzazione di quel tipo e di quella dimensione,
+   decidono o gestiscono l'alloggio di personale esterno o in trasferta.
+   Distingui dove possibile tra:
+   - chi autorizza la spesa (economic buyer)
+   - chi deve materialmente trovare la soluzione (operational buyer)
+   Motiva in base alla struttura organizzativa tipica di quel settore, non inventando
+   organigrammi specifici.
+
+2. CANALI DI INGRESSO PUBBLICI E VERIFICABILI
+   - email aziendali pubblicate sul sito (info@, acquisti@, hr@, fornitori@)
+   - centralino
+   - esistenza di una pagina "fornitori", "supplier", "diventa partner" o di un form di
+     qualifica fornitore, CON URL. Questa e' l'informazione piu' preziosa: e' la porta di
+     servizio che quasi nessuno usa
+   - eventuale portale acquisti o piattaforma di e-procurement utilizzata
+
+3. ANNUNCI DI LAVORO ATTIVI
+   Verifica se l'organizzazione ha pubblicato di recente annunci per posizioni nell'area
+   che citano trasferte o alloggio fornito. Riporta il link e la data. E' insieme un
+   segnale di domanda e un aggancio commerciale.
+
+4. ARGOMENTO DI APERTURA
+   Per ciascuna, una riga: quale problema concreto e documentato le rende utile una
+   soluzione di alloggio long stay in zona. Deve derivare da un fatto citato nel run 1,
+   non da una formula generica.
+
+--------------------------------------------------
+OUTPUT
+--------------------------------------------------
+
+Tabella:
+organizzazione | ruoli da contattare | canale di ingresso migliore | email/URL verificati |
+pagina fornitori (URL o "non trovata") | annunci di lavoro rilevanti | argomento di apertura |
+fonte
+
+Chiudi indicando per quali organizzazioni non hai trovato alcun canale pubblico:
+richiederanno un approccio diverso.

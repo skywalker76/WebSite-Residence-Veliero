@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veliero Smart Living | Lavora dal Mare in Romagna</title>
+    <meta name="description" content="Vivi e lavora dal mare a San Mauro Mare. Appartamenti tutto compreso per smart worker: WiFi fibra, scrivania, a 30m dal mare. Da 650 euro/mese.">
+    <meta property="og:title" content="Veliero Smart Living — Il tuo ufficio vista mare in Romagna">
+    <meta property="og:description" content="Appartamenti arredati per smart worker del Nord Italia. WiFi 100Mbps, scrivania, tutto incluso.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">    <style>
+        :root {
+            --blue-primary: #1875AB; --blue-secondary: #2684BA; --blue-deep: #0D5A8A;
+            --blue-light: #E5F1F7; --blue-lightest: rgba(229,241,247,0.3);
+            --gold: #F5E082; --green-accent: #3DB39E;
+            --text-dark: #1a2a3a; --text-body: #444; --text-muted: #7a8a9a;
+            --white: #fff; --off-white: #f8fafb;
+            --shadow-sm: 0 2px 8px rgba(24,117,171,0.08);
+            --shadow-md: 0 8px 32px rgba(24,117,171,0.12);
+            --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px;
+            --font-heading: 'Raleway',sans-serif; --font-body: 'Raleway',sans-serif;
+            --font-accent: 'Montserrat',sans-serif; --font-display: 'Playfair Display',serif;
+            --transition-fast: 200ms cubic-bezier(0.25,1,0.5,1);
+            --transition-normal: 400ms cubic-bezier(0.16,1,0.3,1);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+        body{font-family:var(--font-body);font-weight:300;color:var(--text-body);line-height:1.7;background:var(--white);overflow-x:hidden}
+        img{max-width:100%;height:auto;display:block}
+        a{color:inherit;text-decoration:none;transition:color var(--transition-fast)}
+        .container{max-width:1100px;margin:0 auto;padding:0 24px}
+        .section-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-accent);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:3px;color:var(--blue-secondary);margin-bottom:20px}
+        .section-eyebrow::before{content:'';width:32px;height:2px;background:var(--blue-secondary)}
+        .section-eyebrow--light{color:rgba(255,255,255,.8)}.section-eyebrow--light::before{background:rgba(255,255,255,.4)}
+        .section-title{font-family:var(--font-heading);font-weight:200;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.25;color:var(--text-dark);margin-bottom:24px}
+        .section-title em{font-family:var(--font-display);font-weight:400;color:var(--blue-primary)}
+        .section-title--light{color:var(--white)}.section-title--light em{color:var(--gold)}
+        .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-accent);font-weight:600;font-size:.9rem;padding:14px 32px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all var(--transition-fast);text-decoration:none}
+        .btn--primary{background:var(--blue-primary);color:var(--white)}.btn--primary:hover{background:var(--blue-deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .btn--ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4)}.btn--ghost:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+        .btn--large{padding:18px 40px;font-size:1rem}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(13,90,138,.92),rgba(24,117,171,.85)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80') center/cover;color:var(--white);text-align:center;padding:80px 24px;position:relative}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--white),transparent)}
+        .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);padding:10px 24px;border-radius:40px;font-family:var(--font-accent);font-size:.82rem;font-weight:500;margin-bottom:32px;border:1px solid rgba(255,255,255,.15)}
+        .hero__title{font-family:var(--font-heading);font-weight:100;font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1.15;margin-bottom:24px}
+        .hero__title em{font-family:var(--font-display);font-weight:400;color:var(--gold)}
+        .hero__subtitle{font-size:1.15rem;font-weight:300;max-width:600px;margin:0 auto 40px;opacity:.9;line-height:1.8}
+        .hero__ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+        .usp-bar{padding:60px 0;background:var(--off-white);position:relative;z-index:2}
+        .usp-bar__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+        .usp-card{text-align:center;padding:32px 20px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:all var(--transition-normal)}
+        .usp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+        .usp-card__icon{font-size:2rem;margin-bottom:16px}
+        .usp-card__title{font-family:var(--font-accent);font-weight:600;font-size:.95rem;color:var(--text-dark);margin-bottom:8px}
+        .usp-card__text{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+        .come-funziona{padding:100px 0;background:var(--white)}
+        .come-funziona>.container>.section-eyebrow,.come-funziona>.container>.section-title{text-align:center}
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px}
+        .step{text-align:center}
+        .step__number{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue-primary),var(--blue-deep));color:var(--white);font-family:var(--font-accent);font-weight:700;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+        .step__title{font-family:var(--font-accent);font-weight:600;font-size:1rem;color:var(--text-dark);margin-bottom:10px}
+        .step__text{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+        .incluso{padding:100px 0;background:linear-gradient(135deg,var(--blue-deep),var(--blue-primary));color:var(--white)}
+        .incluso>.container>.section-eyebrow,.incluso>.container>.section-title{text-align:center}
+        .incluso__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+        .incluso__item{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.08);border-radius:var(--radius-md);padding:24px;border:1px solid rgba(255,255,255,.08);transition:all var(--transition-fast)}
+        .incluso__item:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+        .incluso__icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+        .incluso__label{font-family:var(--font-accent);font-weight:600;font-size:.92rem}
+        .incluso__desc{font-size:.82rem;opacity:.7;margin-top:4px}
+        .risparmio{padding:100px 0;background:var(--off-white)}
+        .risparmio>.container>.section-eyebrow,.risparmio>.container>.section-title{text-align:center}
+        .risparmio__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto}
+        .risparmio__col{background:var(--white);border-radius:var(--radius-lg);padding:40px;text-align:center;box-shadow:var(--shadow-sm)}
+        .risparmio__col--milano{border-top:4px solid #e74c3c}
+        .risparmio__col--veliero{border-top:4px solid var(--green-accent);position:relative}
+        .risparmio__col--veliero::after{content:'RISPARMI';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green-accent);color:var(--white);font-family:var(--font-accent);font-size:.72rem;font-weight:700;padding:4px 16px;border-radius:20px;letter-spacing:1px}
+        .risparmio__city{font-family:var(--font-accent);font-weight:700;font-size:1.1rem;color:var(--text-dark);margin-bottom:24px}
+        .risparmio__row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:.9rem}
+        .risparmio__row:last-child{border-bottom:none}
+        .risparmio__label{color:var(--text-muted)}.risparmio__value{font-family:var(--font-accent);font-weight:600;color:var(--text-dark)}
+        .risparmio__total{margin-top:24px;padding-top:20px;border-top:2px solid var(--text-dark);font-family:var(--font-accent);font-size:1.8rem;font-weight:700;color:var(--text-dark)}
+        .risparmio__total--green{color:var(--green-accent)}
+        .risparmio__savings{text-align:center;margin-top:40px;font-family:var(--font-display);font-size:1.4rem;font-style:italic;color:var(--blue-primary)}
+        .territorio{padding:100px 0;background:var(--white)}
+        .territorio>.container>.section-eyebrow,.territorio>.container>.section-title{text-align:center}
+        .territorio__intro{text-align:center;max-width:700px;margin:0 auto 48px;font-size:1.05rem;color:var(--text-body);line-height:1.8}
+        .territorio__categories{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:40px}
+        .territorio__category{background:var(--off-white);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-sm);transition:all var(--transition-normal);border:1px solid rgba(24,117,171,.06)}
+        .territorio__category:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+        .territorio__cat-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+        .territorio__cat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+        .territorio__cat-icon--cultura{background:rgba(24,117,171,.1)}
+        .territorio__cat-icon--shopping{background:rgba(249,138,165,.12)}
+        .territorio__cat-icon--mobilita{background:rgba(61,179,158,.12)}
+        .territorio__cat-icon--gusto{background:rgba(245,224,130,.25)}
+        .territorio__cat-title{font-family:var(--font-heading);font-weight:600;font-size:1.1rem;color:var(--text-dark)}
+        .territorio__list{list-style:none}
+        .territorio__item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04);gap:12px}
+        .territorio__item:last-child{border-bottom:none}
+        .territorio__place{font-family:var(--font-accent);font-weight:500;font-size:.92rem;color:var(--text-dark)}
+        .territorio__detail{font-size:.82rem;color:var(--text-muted)}
+        .territorio__time{font-family:var(--font-accent);font-size:.82rem;font-weight:600;color:var(--blue-secondary);white-space:nowrap;background:var(--blue-lightest);padding:4px 12px;border-radius:20px;flex-shrink:0}
+        .territorio__quote{text-align:center;margin-top:48px;padding:32px;background:linear-gradient(135deg,var(--blue-primary),var(--blue-deep));border-radius:var(--radius-lg);color:var(--white)}
+        .territorio__quote p{font-family:var(--font-display);font-size:1.15rem;font-style:italic;line-height:1.8;max-width:750px;margin:0 auto}
+        .personas{padding:100px 0;background:var(--off-white)}
+        .personas>.container>.section-eyebrow,.personas>.container>.section-title{text-align:center}
+        .personas__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+        .persona-card{background:var(--white);border-radius:var(--radius-lg);padding:40px 32px;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition-normal)}
+        .persona-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+        .persona-card__icon{font-size:2.5rem;margin-bottom:20px}
+        .persona-card__title{font-family:var(--font-accent);font-weight:700;font-size:1rem;color:var(--text-dark);margin-bottom:8px}
+        .persona-card__role{font-family:var(--font-accent);font-size:.82rem;color:var(--blue-secondary);font-weight:600;margin-bottom:16px}
+        .persona-card__text{font-size:.88rem;color:var(--text-muted);line-height:1.7}
+        .cta-finale{padding:100px 0;text-align:center;background:linear-gradient(135deg,var(--blue-deep),#0a4a6e);color:var(--white)}
+        .cta-finale>.container>.section-eyebrow,.cta-finale>.container>.section-title{text-align:center}
+        .cta-finale__text{font-size:1.1rem;opacity:.85;max-width:600px;margin:0 auto 40px;line-height:1.8}
+        .cta-finale__contacts{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+        .cta-finale__contact{display:flex;align-items:center;gap:8px;font-family:var(--font-accent);font-size:.9rem;font-weight:500;opacity:.8}
+        .footer{background:var(--text-dark);padding:32px 0;text-align:center;color:rgba(255,255,255,.5);font-size:.82rem}
+        .footer a{color:rgba(255,255,255,.7)}.footer a:hover{color:var(--white)}
+        @media(max-width:768px){.usp-bar__grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.incluso__grid{grid-template-columns:1fr}.territorio__categories{grid-template-columns:1fr}.risparmio__grid{grid-template-columns:1fr}.personas__grid{grid-template-columns:1fr}.hero__title{font-size:2rem}}
+        @media(max-width:480px){.usp-bar__grid{grid-template-columns:1fr}}
+    </style>
+</head><body>
+<section class="hero" id="top"><div>
+<div class="hero__badge"><span>&#x1F4CD;</span><span>San Mauro Mare &#8212; 30m dal mare, 10 min dall'autostrada</span></div>
+<h1 class="hero__title">Il tuo ufficio<br><em>vista mare in Romagna</em></h1>
+<p class="hero__subtitle">Appartamenti tutto compreso per professionisti del Nord Italia che vogliono lavorare da remoto con <strong>qualit&#224; della vita vera</strong>.<br>Da <strong>&#8364;650/mese</strong>, tutto incluso.</p>
+<div class="hero__ctas"><a href="#contatti" class="btn btn--primary btn--large">Richiedi Disponibilit&#224;</a><a href="#risparmio" class="btn btn--ghost btn--large">Quanto Risparmi?</a></div>
+</div></section>
+
+<section class="usp-bar"><div class="container"><div class="usp-bar__grid">
+<div class="usp-card"><div class="usp-card__icon">&#x1F4F6;</div><div class="usp-card__title">WiFi Fibra 100+ Mbps</div><div class="usp-card__text">Connessione verificata con speed test. Videochiamate senza lag, upload garantito.</div></div>
+<div class="usp-card"><div class="usp-card__icon">&#x1F3D6;&#xFE0F;</div><div class="usp-card__title">30m dal Mare</div><div class="usp-card__text">Pausa pranzo in spiaggia. Non &#232; un modo di dire &#8212; attraversi la strada e ci sei.</div></div>
+<div class="usp-card"><div class="usp-card__icon">&#x1F511;</div><div class="usp-card__title">Tutto Compreso</div><div class="usp-card__text">Utenze, WiFi, pulizie, biancheria. Un canone, zero sorprese. Arrivi con la valigia.</div></div>
+<div class="usp-card"><div class="usp-card__icon">&#x1F697;</div><div class="usp-card__title">A14 in 10 Minuti</div><div class="usp-card__text">Bologna 55', Milano 2h30. Stazione Rimini a 20'. Quando serve, la citt&#224; &#232; vicina.</div></div>
+</div></div></section>
+
+<section class="come-funziona"><div class="container">
+<span class="section-eyebrow">Come Funziona</span>
+<h2 class="section-title">Tre passi e sei<br><em>al mare che lavora.</em></h2>
+<div class="steps">
+<div class="step"><div class="step__number">1</div><div class="step__title">Scegli il Periodo</div><div class="step__text">Da 1 mese a 12 mesi. Pi&#249; resti, pi&#249; risparmi. Contratto transitorio flessibile, perfetto per smart worker.</div></div>
+<div class="step"><div class="step__number">2</div><div class="step__title">Arrivi con la Valigia</div><div class="step__text">Appartamento arredato, WiFi attivo, scrivania pronta. Tutto incluso nel canone: utenze, pulizie, biancheria.</div></div>
+<div class="step"><div class="step__number">3</div><div class="step__title">Vivi e Lavora dal Mare</div><div class="step__text">Call la mattina, pranzo in spiaggia, Sangiovese la sera. La Romagna diventa il tuo ufficio pi&#249; bello.</div></div>
+</div></div></section>
+
+<section class="incluso"><div class="container">
+<span class="section-eyebrow section-eyebrow--light">Tutto Incluso</span>
+<h2 class="section-title section-title--light">Un canone fisso.<br><em>Zero pensieri.</em></h2>
+<div class="incluso__grid">
+<div class="incluso__item"><span class="incluso__icon">&#x1F4F6;</span><div><div class="incluso__label">WiFi Fibra &#8805; 100 Mbps</div><div class="incluso__desc">Speed test verificato, ideale per videocall</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1FA91;</span><div><div class="incluso__label">Scrivania Dedicata</div><div class="incluso__desc">Postazione lavoro con presa e illuminazione</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F4A1;</span><div><div class="incluso__label">Utenze Incluse</div><div class="incluso__desc">Luce, acqua, gas, riscaldamento</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F9F9;</span><div><div class="incluso__label">Pulizie Settimanali</div><div class="incluso__desc">Cambio biancheria e pulizia professionale</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F17F;&#xFE0F;</span><div><div class="incluso__label">Parcheggio Gratuito</div><div class="incluso__desc">Posto auto riservato nel residence</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F6B2;</span><div><div class="incluso__label">Biciclette Gratuite</div><div class="incluso__desc">Per muoversi a San Mauro senza auto</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x2744;&#xFE0F;</span><div><div class="incluso__label">Aria Condizionata</div><div class="incluso__desc">Lavori sempre al comfort ideale</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F373;</span><div><div class="incluso__label">Cucina Attrezzata</div><div class="incluso__desc">Cucini quando vuoi, risparmi ogni giorno</div></div></div>
+<div class="incluso__item"><span class="incluso__icon">&#x1F4FA;</span><div><div class="incluso__label">Smart TV</div><div class="incluso__desc">Netflix, presentazioni, secondo schermo</div></div></div>
+</div></div></section>
+<section class="risparmio" id="risparmio"><div class="container">
+<span class="section-eyebrow">Quanto Risparmi</span>
+<h2 class="section-title">Milano vs San Mauro Mare.<br><em>Fai i conti.</em></h2>
+<div class="risparmio__grid">
+<div class="risparmio__col risparmio__col--milano"><div class="risparmio__city">&#x1F3D9;&#xFE0F; Milano</div>
+<div class="risparmio__row"><span class="risparmio__label">Affitto bilocale</span><span class="risparmio__value">&#8364;1.200</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Utenze</span><span class="risparmio__value">&#8364;180</span></div>
+<div class="risparmio__row"><span class="risparmio__label">WiFi</span><span class="risparmio__value">&#8364;30</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Pulizie</span><span class="risparmio__value">&#8364;120</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Parcheggio / trasporti</span><span class="risparmio__value">&#8364;150</span></div>
+<div class="risparmio__total">&#8364;1.680/mese</div></div>
+<div class="risparmio__col risparmio__col--veliero"><div class="risparmio__city">&#x1F30A; San Mauro Mare</div>
+<div class="risparmio__row"><span class="risparmio__label">Tutto compreso</span><span class="risparmio__value">&#8364;650</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Utenze</span><span class="risparmio__value">incluse</span></div>
+<div class="risparmio__row"><span class="risparmio__label">WiFi Fibra</span><span class="risparmio__value">incluso</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Pulizie settimanali</span><span class="risparmio__value">incluse</span></div>
+<div class="risparmio__row"><span class="risparmio__label">Parcheggio + bici</span><span class="risparmio__value">inclusi</span></div>
+<div class="risparmio__total risparmio__total--green">&#8364;650/mese</div></div>
+</div>
+<div class="risparmio__savings">Risparmi oltre <strong>&#8364;1.000 al mese</strong> &#8212; e vivi a 30 metri dal mare.</div>
+</div></section>
+
+<section class="territorio" id="territorio"><div class="container">
+<span class="section-eyebrow">Il Territorio</span>
+<h2 class="section-title">Nel cuore della Romagna.<br><em>Tutto a portata di mano.</em></h2>
+<p class="territorio__intro">San Mauro Mare non &#232; isolamento &#8212; &#232; il baricentro strategico della Romagna. Borghi medievali, siti UNESCO, centri commerciali e le migliori trattorie d'Italia &#8212; tutto in pochi minuti d'auto.</p>
+<div class="territorio__categories">
+<div class="territorio__category"><div class="territorio__cat-header"><div class="territorio__cat-icon territorio__cat-icon--cultura">&#x1F3DB;&#xFE0F;</div><h3 class="territorio__cat-title">Cultura &amp; Storia</h3></div>
+<ul class="territorio__list">
+<li class="territorio__item"><div><span class="territorio__place">Santarcangelo di Romagna</span><div class="territorio__detail">Borgo medievale, grotte tufacee, festival del teatro</div></div><span class="territorio__time">10 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Rimini</span><div class="territorio__detail">Arco d'Augusto, Ponte di Tiberio, Cinema Fulgor di Fellini</div></div><span class="territorio__time">20 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Cesena</span><div class="territorio__detail">Biblioteca Malatestiana UNESCO, Rocca, universit&#224;</div></div><span class="territorio__time">20 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Cattolica</span><div class="territorio__detail">Acquario, Museo della Regina, lungomare pedonale</div></div><span class="territorio__time">25 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Ravenna</span><div class="territorio__detail">Mosaici bizantini, 8 siti UNESCO, Tomba di Dante</div></div><span class="territorio__time">35 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">San Leo</span><div class="territorio__detail">Fortezza su roccia &#8212; &#8220;la pi&#249; bella d'Italia&#8221;</div></div><span class="territorio__time">40 min</span></li>
+</ul></div>
+<div class="territorio__category"><div class="territorio__cat-header"><div class="territorio__cat-icon territorio__cat-icon--shopping">&#x1F6D2;</div><h3 class="territorio__cat-title">Shopping &amp; Servizi</h3></div>
+<ul class="territorio__list">
+<li class="territorio__item"><div><span class="territorio__place">Supermercato locale</span><div class="territorio__detail">Raggiungibile a piedi o in bici dal residence</div></div><span class="territorio__time">5 min &#x1F6B6;</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Iper Romagna Center</span><div class="territorio__detail">Savignano &#8212; ipermercato, negozi, cinema</div></div><span class="territorio__time">10 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Le Befane Shopping Centre</span><div class="territorio__detail">Rimini &#8212; 130+ negozi, IKEA, Mediaworld, multisala</div></div><span class="territorio__time">20 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Rimini Fiera</span><div class="territorio__detail">Fiere internazionali: TTG, Ecomondo, SIG</div></div><span class="territorio__time">15 min</span></li>
+</ul></div>
+<div class="territorio__category"><div class="territorio__cat-header"><div class="territorio__cat-icon territorio__cat-icon--mobilita">&#x1F697;</div><h3 class="territorio__cat-title">Mobilit&#224; &amp; Connessioni</h3></div>
+<ul class="territorio__list">
+<li class="territorio__item"><div><span class="territorio__place">Superstrada E45</span><div class="territorio__detail">Collegamento nord-sud: Cesena, Perugia, Roma</div></div><span class="territorio__time">5 km</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Autostrada A14 &#8212; Rimini Nord</span><div class="territorio__detail">Bologna 55', Milano 2h30, Firenze 1h30</div></div><span class="territorio__time">10 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Stazione FS Rimini</span><div class="territorio__detail">Freccia per Bologna 1h, Milano 2h30, Roma 3h30</div></div><span class="territorio__time">20 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Aeroporto Bologna Marconi</span><div class="territorio__detail">Hub internazionale, voli in tutta Europa</div></div><span class="territorio__time">1 ora</span></li>
+</ul></div>
+<div class="territorio__category"><div class="territorio__cat-header"><div class="territorio__cat-icon territorio__cat-icon--gusto">&#x1F37D;&#xFE0F;</div><h3 class="territorio__cat-title">Sapori &amp; Lifestyle</h3></div>
+<ul class="territorio__list">
+<li class="territorio__item"><div><span class="territorio__place">Piadina romagnola</span><div class="territorio__detail">Chioschi e botteghe ovunque, anche a San Mauro</div></div><span class="territorio__time">5 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Mercato del pesce &#8212; Cesenatico</span><div class="territorio__detail">Pesce fresco, porto canale leonardesco</div></div><span class="territorio__time">15 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Cantine di Bertinoro</span><div class="territorio__detail">Sangiovese, degustazioni nelle colline romagnole</div></div><span class="territorio__time">30 min</span></li>
+<li class="territorio__item"><div><span class="territorio__place">Terme &amp; Wellness</span><div class="territorio__detail">Riccione e Rimini Terme &#8212; relax dopo il lavoro</div></div><span class="territorio__time">25 min</span></li>
+</ul></div>
+</div>
+<div class="territorio__quote"><p>&#8220;Lavori con vista mare, pranzi in spiaggia, fai la spesa a piedi. Nel weekend: Ravenna UNESCO, Santarcangelo medievale, Le Befane con 130 negozi, Sangiovese nelle colline &#8212; tutto in 20-40 minuti. Prova a fare lo stesso da Milano.&#8221;</p></div>
+</div></section>
+<section class="personas"><div class="container">
+<span class="section-eyebrow">Per Chi &#200;</span>
+<h2 class="section-title">Ti riconosci?<br><em>Allora &#232; per te.</em></h2>
+<div class="personas__grid">
+<div class="persona-card"><div class="persona-card__icon">&#x1F4BC;</div><div class="persona-card__title">Il Professionista da Milano</div><div class="persona-card__role">Consulente / PM / Manager, 35-45 anni</div><div class="persona-card__text">Lavori per un'azienda che ti permette il full remote. Paghi &#8364;1.500+ di affitto a Milano per un bilocale senza balcone. Qui hai il mare, spendi meno, e vivi meglio.</div></div>
+<div class="persona-card"><div class="persona-card__icon">&#x1F3A8;</div><div class="persona-card__title">Il Freelancer da Bologna</div><div class="persona-card__role">Designer / Developer / Copywriter, 28-38 anni</div><div class="persona-card__text">Lavori con i tuoi tempi, i tuoi clienti. Ti serve WiFi veloce, silenzio per concentrarti, e un posto dove staccare davvero. Il mare a 30 metri &#232; il tuo coworking.</div></div>
+<div class="persona-card"><div class="persona-card__icon">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F466;</div><div class="persona-card__title">La Famiglia in Smart Working</div><div class="persona-card__role">Coppia con figlio piccolo, lifestyle upgrade</div><div class="persona-card__text">Uno o entrambi lavorate da casa. Cercate spazio, aria, sicurezza per i bambini. Bandiera Verde dei Pediatri, zona pedonale, centro commerciale a 5 minuti a piedi.</div></div>
+</div></div></section>
+
+<section class="cta-finale" id="contatti"><div class="container">
+<span class="section-eyebrow section-eyebrow--light">Inizia Ora</span>
+<h2 class="section-title section-title--light">Pronto a cambiare<br><em>la tua qualit&#224; della vita?</em></h2>
+<p class="cta-finale__text">Scrivici per conoscere disponibilit&#224; e prezzi. Nessun impegno &#8212; rispondiamo entro 24 ore. Contratto transitorio flessibile, da 1 a 12 mesi.</p>
+<a href="https://wa.me/393668909383?text=Ciao%2C%20sono%20interessato%20al%20Veliero%20Smart%20Living.%20Vorrei%20informazioni%20su%20disponibilit%C3%A0%20e%20prezzi%20per%20un%20soggiorno%20di%20lavoro%20da%20remoto." class="btn btn--primary btn--large" target="_blank" rel="noopener">&#x1F4AC; Scrivici su WhatsApp</a>
+<div class="cta-finale__contacts">
+<div class="cta-finale__contact">&#x1F4DE; 0541.346330</div>
+<div class="cta-finale__contact">&#x2709;&#xFE0F; info@residenceveliero.it</div>
+</div></div></section>
+
+<footer class="footer"><div class="container">
+<p>Veliero Smart Living &#8212; Residence Veliero &amp; Altamarea</p>
+<p>Via Orsa Minore, 5 &#8212; 47030 San Mauro Mare (FC) &#8212; Italia</p>
+<p style="margin-top:12px">&#169; 2026 Residence Veliero. Tutti i diritti riservati. | <a href="https://www.residenceveliero.it/popup/privacy_privacyit.html" target="_blank">Privacy Policy</a></p>
+</div></footer>
+</body></html>
