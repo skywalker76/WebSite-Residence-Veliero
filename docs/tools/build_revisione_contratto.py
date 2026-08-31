@@ -1,0 +1,731 @@
+# -*- coding: utf-8 -*-
+"""Revisione della bozza di contratto Long Stay — Residence Veliero.
+Unica sorgente di contenuto -> Markdown (repo), DOCX (Download + docs), HTML (artifact).
+Convenzioni nelle liste di testo:
+  '§ ...'   = testo di clausola proposto (reso come blocco citazione)
+  '> ...'   = citazione testuale della bozza
+  '[LEGALE] ...' / '[PROPRIETÀ] ...' = nota marcata (pill)
+"""
+import html, re, sys, io
+from pathlib import Path
+
+DATA_ORIG = "31/08/2026"
+REPO = Path(r"C:\Antigravity\WebSite-Residence-Veliero")
+DOWNLOADS = Path(r"C:\Users\gamat\Downloads")
+SCRATCH = Path(__file__).parent
+
+TITOLO = "Revisione della bozza di contratto Long Stay"
+SOTTOTITOLO = "Residence Veliero & Altamarea — bozza del 31/08/2026 fornita da Marco Masini"
+
+META = [
+    ("Documento esaminato", "«Contratto d'affitto Long Stay Bozza del 31-8-26.docx» — 47 paragrafi, 8 articoli, creato il 31/08/2026 alle 09:23 (metadati: autore VELIERO). È l'output grezzo di un assistente AI: il file contiene ancora il prompt iniziale e i «consigli utili» finali."),
+    ("Destinatari", "Paolo e Marco Masini (proprietà)."),
+    ("Redatto da", "NexaFrontiers — revisione consulenziale, 31/08/2026."),
+    ("Natura del documento", "Revisione strategico-contrattuale. Non è un parere legale: i punti marcati LEGALE vanno validati da un avvocato del settore ricettivo prima di ogni uso, come già indicato in ARCHITETTURA_SISTEMA_2026 §9. I punti marcati PROPRIETÀ sono decisioni che spettano ai titolari, non al contratto."),
+    ("Fonti usate", "Bozza del 31/08; FONTE_03 (modello contrattuale della proprietà, 15/06/2026); FONTE_01-02 (voce della proprietà, 26/08/2026); ARCHITETTURA_SISTEMA_2026 §8-10; ANALISI_GAP_20260826; L.R. Emilia-Romagna 16/2004; Codice Civile; Codice del Consumo; regolamento imposta di soggiorno del Comune di San Mauro Pascoli; giurisprudenza di Cassazione sul contratto di residence (riferimenti in coda)."),
+]
+
+SINTESI = [
+    "L'istinto della bozza è giusto: un contratto di ospitalità in residenza turistico-alberghiera, non una locazione. Lo confermano la L.R. Emilia-Romagna 16/2004 (RTA = alloggio più servizi accessori a gestione unitaria) e la Cassazione, per cui il contratto di residence si distingue dalla locazione per i servizi alberghieri inclusi nel corrispettivo, anche se l'ospite non li usa, e una permanenza lunga non lo trasforma in locazione.",
+    "Ma la bozza è scritta con il vocabolario della locazione — «affitto» nel nome del file, «canone» quattro volte, «sublocare», «TARI e spese condominiali» — e lascia «opzionali» pulizie e biancheria: cioè proprio i servizi che sono l'unica cosa che la distingue da una locazione. Il nodo servizio → prezzo ancora aperto (ARCHITETTURA §10) non è solo commerciale: è la tenuta giuridica del contratto.",
+    "Tre errori oggettivi: il foro di Rimini (San Mauro Mare è in provincia di Forlì-Cesena: il tribunale è Forlì); un foro esclusivo imposto a un consumatore (clausola presunta vessatoria e nulla, Codice del Consumo artt. 33 e 36); nessuna doppia sottoscrizione ex artt. 1341-1342 c.c., senza la quale le clausole che la proprietà vuole di più — limiti al recesso, risoluzione, penali, foro — sono inefficaci verso l'ospite.",
+    "Tre rischi economici non prezzati: consumi illimitati per dodici mesi a prezzo fisso in una struttura nata per l'estate (le bollette invernali non sono mai state verificate); Wi-Fi senza alcuna regola in un prodotto venduto a chi lavora in rete; dodici mesi fissi su unità che da giugno ad agosto rendono più del canone (ANALISI_GAP §5).",
+    "Sei clausole assenti: verbale di consegna con inventario e contatori; elenco degli occupanti e registrazione di ciascuno; responsabilità per le cose portate in struttura (art. 1783 c.c., non escludibile per patto); recesso del Gestore per cause oggettive; indennità per chi resta oltre il termine; informativa privacy.",
+    "Il modello di giugno (FONTE_03) aveva tre cose buone che la bozza ha perso — pagamento prima dell'ingresso, verifica di solvibilità, cauzione psicologica — e una che va tenuta fuori: il divieto di minori.",
+    "La variante aziendale non esiste, mentre il piano del 31/08 dà priorità al Corporate Workforce B2B: serve un contratto quadro con l'azienda contraente, occupanti a rotazione, fattura elettronica e pagamenti tracciati (L. 207/2024).",
+    "Le decisioni che spettano alla proprietà, non al contratto: livello di servizio e quindi prezzo; franchigia consumi dopo aver letto le bollette; dodici mesi fissi o uscita dopo il terzo mese; deposito di una o due mensilità; termini B2B (anticipo o 30 giorni, allotment, rotazione).",
+    "Otto punti da far validare dal legale, marcati LEGALE nella tabella: natura del rapporto e servizi minimi; clausola sulla residenza; procedura di risoluzione e rilascio; art. 1783 c.c. e polizza; artt. 1341-1342 e Codice del Consumo; registrazione; documenti reddituali e GDPR; compatibilità del soggiorno annuale con il titolo RTA e la destinazione urbanistica.",
+    "Valutazione: la bozza vale 5/10 come scheletro (impianto giusto, lessico sbagliato, sei vuoti). Il testo rivisto secondo questa tabella, prima della validazione legale, vale 8/10. Fatto quando: la proprietà ha preso le cinque decisioni, il legale ha validato gli otto punti, e il primo contratto è firmato con i quattro allegati.",
+]
+
+# ------------------------------------------------------------------ righe
+ROWS = [
+dict(id="0", titolo="Il file e il testo introduttivo", tags=[],
+era=[
+ "Il file si chiama «Contratto d'affitto Long Stay Bozza del 31-8-26».",
+ "> ora ti chiedo un di farmi una bozza di contratto per un affitto long stay in un residence che si chiama Residence Veliero, ho una licenza RTA […] il cliente resterà un anno, con formula tutto compreso, al prezzo di 1.100€ al mese",
+ "Segue il preambolo dell'assistente («Ecco una bozza… Trattandosi di una struttura ricettiva (RTA), questo non è un contratto di locazione abitativa standard (regolato dalla legge 431/98)…») e, in coda, i «💡 Consigli Utili per la Gestione» con le domande dell'assistente («Se vuoi personalizzare la bozza, fammi sapere…»).",
+],
+proposta=[
+ "Rinominare il file: «Contratto di ospitalità Long Stay — Residence Veliero — v0.2».",
+ "Eliminare prompt, preambolo e consigli finali: il contratto inizia dal titolo e finisce con le firme e l'elenco degli allegati.",
+ "Il ragionamento «perché non è una locazione» resta in una nota interna alla proprietà (questo documento), non nel contratto.",
+],
+perche=[
+ "È l'output grezzo di un assistente AI, con tanto di domanda iniziale. Se arriva così a un ospite, a un ufficio acquisti o all'avvocato di controparte, la credibilità del Veliero cala prima della prima clausola.",
+ "La parola «affitto» nel nome del file è già una dichiarazione contraria a ciò che il contratto vuole essere. In un contenzioso le parole scelte dalle parti sono prova di ciò che intendevano.",
+ "Un contratto che spiega nel preambolo perché non è una locazione si comporta come chi ha qualcosa da nascondere: l'art. 13 della L. 431/1998 colpisce i patti volti a eludere la disciplina delle locazioni. La natura di ospitalità si dimostra con i fatti — servizi, gestione unitaria, temporaneità — non con le dichiarazioni.",
+]),
+
+dict(id="T", titolo="Titolo del contratto", tags=[],
+era=["> CONTRATTO DI ALLOGGIO E PRESTAZIONE SERVIZI IN RTA (\"LONG STAY\")"],
+proposta=[
+ "§ CONTRATTO DI OSPITALITÀ IN RESIDENZA TURISTICO-ALBERGHIERA — Soggiorno prolungato («Long Stay»)",
+ "Sottotitolo: «Residence Veliero — San Mauro Mare, Comune di San Mauro Pascoli (FC)».",
+],
+perche=[
+ "«Ospitalità» è il termine con cui la L.R. 16/2004 e la giurisprudenza qualificano il rapporto in struttura ricettiva, ed è la stessa parola che la proprietà aveva scelto nel modello di giugno («contratto di ospitalità temporanea», FONTE_03). «Alloggio e prestazione servizi» è corretto ma generico.",
+ "Indicare il Comune giusto fin dal titolo evita l'errore che riemerge all'art. 8: la bozza sceglie il foro di Rimini, ma San Mauro Mare è in provincia di Forlì-Cesena.",
+]),
+
+dict(id="P", titolo="Le parti", tags=[],
+era=[
+ "> GENTILE FORNITORE (STRUTTURA RICETTIVA): […] munito della licenza RTA (Residenza Turistico Alberghiera) n. [Numero Licenza] rilasciata dal Comune di [Nome Comune]",
+ "> GENTILE OSPITE (CLIENTE): Il Sig./La Sig.ra […] residente a […] C.F. […] documento d'identità […]",
+ "Nessuna e-mail, nessun telefono, nessuna PEC, nessun altro occupante dell'unità, nessuna causale del soggiorno.",
+],
+proposta=[
+ "Intestazioni sobrie: «IL GESTORE» e «L'OSPITE» (nella variante aziendale: «IL CLIENTE» e «GLI OCCUPANTI»).",
+ "§ Gestore: ragione sociale, sede, P.IVA/C.F., PEC ed e-mail operativa, «esercente la residenza turistico-alberghiera “Residence Veliero” in San Mauro Mare, via [__], in forza di SCIA/autorizzazione prot. n. [__] del [__] presso il SUAP del Comune di San Mauro Pascoli, classificazione [__ stelle] ai sensi della L.R. Emilia-Romagna 16/2004».",
+ "§ Ospite: generalità e documento, e-mail e cellulare per le comunicazioni, «residente in [__], residenza che dichiara di mantenere per l'intera durata del soggiorno»; causale del soggiorno («lavoro da remoto per conto di [__] / incarico presso [__] / studio»); «persone ammesse a pernottare con l'Ospite: [nominativi e generalità]», nel limite dei posti letto autorizzati per l'unità.",
+],
+perche=[
+ "«Gentile» è lessico da lettera commerciale, non da contratto; suona tradotto.",
+ "«Licenza rilasciata dal Comune» descrive il regime precedente alla SCIA. Scrivere esattamente il titolo che la proprietà possiede — protocollo SUAP, classificazione regionale — evita che la prima verifica di un legale o di un ufficio acquisti trovi un'imprecisione. [PROPRIETÀ] Recuperare gli estremi esatti del titolo.",
+ "Residenza altrove e causale temporanea sono due degli elementi che rendono credibile la natura di ospitalità (transitorietà): la bozza li affida a un divieto all'art. 5, che è molto più debole di una dichiarazione dell'Ospite.",
+ "Ogni persona che pernotta va identificata e registrata (art. 109 TULPS). Senza l'elenco degli occupanti, la clausola sugli ospiti non registrati non ha un riferimento a cui agganciarsi.",
+]),
+
+dict(id="1", titolo="Art. 1 — Oggetto e natura giuridica", tags=["LEGALE"],
+era=[
+ "> Il Residence concede in uso all'Ospite […] l'unità abitativa (appartamento/suite) n. [Numero] […] classificata catastalmente e amministrativamente come porzione di Residenza Turistico Alberghiera (RTA).",
+ "> Le parti convengono espressamente che il presente accordo configura un contratto di ospitalità e fornitura di servizi alberghieri multimediali e non una locazione immobiliare ad uso abitativo. L'Ospite non acquisisce alcun diritto di locazione, né il possesso dell'immobile, bensì la sola detenzione qualificata temporanea legata alla fruizione dei servizi.",
+],
+proposta=[
+ "§ 1.1 Il Gestore, nell'esercizio dell'attività ricettiva condotta a gestione unitaria, fornisce all'Ospite il servizio di alloggio nell'unità abitativa n. [__] (tipologia [bilocale/trilocale], mq [__], posti letto autorizzati [__]), arredata e corredata come da inventario fotografico (Allegato A), unitamente ai servizi accessori di cui all'art. 3 e al Regolamento della struttura (Allegato B).",
+ "§ 1.2 L'Ospite fruisce dell'unità per esigenze temporanee legate a [lavoro/studio], mantenendo la propria residenza e il centro dei propri interessi in [__]. L'unità resta nella disponibilità e sotto la gestione unitaria del Gestore, che vi accede per l'erogazione dei servizi nei termini dell'art. 5. Il presente contratto è un contratto di ospitalità alberghiera; all'Ospite non è trasferito alcun diritto sull'immobile diverso dalla fruizione del servizio di alloggio.",
+ "Eliminare «multimediali» e il riferimento alla classificazione catastale.",
+],
+perche=[
+ "«Servizi alberghieri multimediali» non significa nulla in questo contesto: è un'allucinazione del modello, e un avvocato che la legge dubita di tutto il resto.",
+ "«Classificata catastalmente» è un'affermazione da provare: molte RTA della Riviera hanno unità accatastate singolarmente (A/2, A/3) con vincolo di destinazione, non D/2. Se il dato è inesatto, la clausola diventa una prova contro il Gestore. Il titolo amministrativo (SCIA, classificazione) è certo: si cita quello. [LEGALE] Verificare anche che il soggiorno annuale sia compatibile con il titolo RTA e con la destinazione urbanistica dell'immobile: è il rischio «cambio d'uso di fatto», noto in Riviera.",
+ "La qualificazione la decidono i fatti. Per la Cassazione il contratto di residence si distingue dalla locazione perché nel corrispettivo sono inclusi servizi di natura alberghiera — che esistano e siano nel contratto, anche se l'ospite non li usa — e una permanenza lunga, persino pluriennale, non lo esclude. Dichiarare «non è una locazione» non aggiunge nulla se i servizi mancano, ed è superfluo se ci sono.",
+ "Inventario fotografico e posti letto autorizzati sono i due riferimenti che rendono applicabili, più avanti, il deposito e il limite di occupanti.",
+]),
+
+dict(id="2", titolo="Art. 2 — Durata, consegna, prosecuzione", tags=["PROPRIETÀ"],
+era=[
+ "> Il presente accordo ha una durata determinata di 1 (un) anno. […] Alla scadenza del termine annuale, il contratto cesserà di produrre effetti automaticamente, senza necessità di disdetta. È escluso qualsiasi rinnovo tacito.",
+ "Date e orari di check-in e check-out. Nessun verbale di consegna, nessuna riconsegna, nessuna regola per chi vuole restare.",
+],
+proposta=[
+ "§ 2.1 Il soggiorno ha durata di 12 mesi, dal [__] (check-in dalle ore 15:00) al [__] (check-out entro le ore 10:00).",
+ "§ 2.2 Alla scadenza il soggiorno cessa senza necessità di disdetta; è escluso ogni rinnovo tacito. Ogni prosecuzione richiede un nuovo accordo scritto: il Gestore riconosce all'Ospite in regola con i pagamenti la priorità sulla stessa unità, a condizioni da definire entro 60 giorni prima della scadenza.",
+ "§ 2.3 Alla consegna le parti redigono il verbale con inventario, fotografie e lettura dei contatori (Allegato A); al termine, il verbale di riconsegna in contraddittorio. Le difformità non segnalate dall'Ospite entro 3 giorni dal check-in si intendono inesistenti.",
+ "[PROPRIETÀ] Decidere: 12 mesi fissi, oppure uscita dell'Ospite dopo il 3° mese con 60 giorni di preavviso (v. art. 6). E su quali unità: solo una quota dedicata, o tutte.",
+],
+perche=[
+ "L'esclusione del rinnovo tacito è giusta e va tenuta: il rinnovo automatico è il meccanismo tipico delle locazioni (L. 431/1998) e va tenuto lontano.",
+ "La priorità sulla stessa unità è fidelizzazione a costo zero: chi ha passato un inverno a San Mauro e vuole restare è il cliente migliore, e oggi la bozza lo mette alla porta.",
+ "Senza verbale, inventario e lettura dei contatori, né il deposito (art. 4) né la franchigia consumi (art. 3) si possono far valere: si litiga sulla memoria.",
+ "Attenzione economica (ANALISI_GAP §5): un contratto annuale a 1.100 €/mese vale 13.200 €/anno per unità; il modello ibrido — estate turistica ai listini reali di 65–87 €/notte più otto mesi di Smart Living — vale circa 16.800–18.000 €. Il contratto annuale ha senso su una quota di unità dedicate (il B2B chiede disponibilità anche a luglio, ARCHITETTURA §5, punto 9), non su tutte e dieci. In alternativa: prezzo stagionale dichiarato in contratto, più alto da giugno ad agosto.",
+]),
+
+dict(id="3a", titolo="Art. 3 (a) — Prezzo e IVA", tags=["PROPRIETÀ"],
+era=[
+ "> Il corrispettivo per il soggiorno e la contestuale fornitura dei servizi è fissato in € 1.100,00 (millecento/00 euro) mensili [indicare se l'importo è IVA inclusa o esclusa in base al regime fiscale, l'IVA per RTA è generalmente al 10%].",
+],
+proposta=[
+ "§ 3.1 Il corrispettivo del soggiorno e dei servizi inclusi è di € [__] mensili, IVA 10% inclusa. (Variante aziendale: «€ [__] mensili oltre IVA 10%».)",
+ "§ 3.2 Il corrispettivo è invariabile per l'intera durata del soggiorno, salvo quanto previsto al punto 3.4 per i consumi eccedenti la franchigia.",
+ "§ 3.3 Il Gestore emette fattura o ricevuta fiscale per ciascuna mensilità.",
+ "[PROPRIETÀ] Importo da confermare: la bozza usa 1.100 €, le fonti del 26/08 indicano 1.100–1.300 €, ma il nodo servizio → prezzo (riga 3b) non è chiuso. Il numero si scrive dopo la decisione sul servizio, non prima.",
+],
+perche=[
+ "Le prestazioni di alloggio in strutture ricettive sono soggette a IVA al 10% (n. 120, Tabella A, parte III, DPR 633/1972): in un contratto non si scrive «generalmente», si scrive l'aliquota.",
+ "Verso un consumatore il prezzo si indica come importo totale, imposte incluse (Codice del Consumo, artt. 48-49): «1.100 + IVA» a una persona fisica è un errore e un'obiezione al check-in.",
+ "L'invariabilità per dodici mesi è un argomento di vendita — «nessun conguaglio, nessuna sorpresa» (ARCHITETTURA §9) — e va scritta; l'unica eccezione dichiarata è la franchigia consumi, che così resta trasparente.",
+ "Che il prezzo sia 1.100, 1.200 o 1.300 dipende da ciò che c'è dentro: è la decisione del meeting, non del contratto.",
+]),
+
+dict(id="3b", titolo="Art. 3 (b) — Cosa include il «tutto compreso»", tags=["PROPRIETÀ", "LEGALE"],
+era=[
+ "> Consumi energetici (energia elettrica, acqua calda/fredda, riscaldamento, condizionamento d'aria). — senza alcun limite",
+ "> Connessione Internet Wi-Fi. — senza specifiche",
+ "> Tassa sui rifiuti (TARI) e spese condominiali/di gestione della struttura.",
+ "> [Opzionale, specificare se incluso:] Pulizia dell'unità e cambio biancheria da letto/bagno con cadenza [es. settimanale / bisettimanale].",
+ "> Accesso alle aree comuni del Residence Veliero.",
+],
+proposta=[
+ "Elenco tassativo, solo dotazioni reali:",
+ "§ a) alloggio arredato e corredato (Allegato A); b) utenze — energia elettrica, acqua, gas/riscaldamento, climatizzazione — entro una franchigia di [__] kWh/mese [oppure € __/mese] per unità, misurata con lettura dei contatori al check-in, al check-out e [mensilmente]; l'eccedenza è addebitata al costo effettivo risultante dalle bollette del Gestore, senza ricarico (punto 3.4); c) connessione Wi-Fi [fibra/…] senza garanzia di banda; in caso di guasto imputabile al Gestore, ripristino o soluzione alternativa entro 48 ore; d) pulizia dell'unità ogni [15] giorni e cambio della biancheria da letto e da bagno ogni [15/30] giorni; e) manutenzione ordinaria e straordinaria degli impianti e piccola manutenzione (lampadine, rubinetteria, tende) a cura e spese del Gestore, salvo danni da uso improprio; f) assistenza tramite referente [nome, orari, canale] con risposta entro [__] ore lavorative; g) uso delle aree comuni e delle dotazioni indicate nel Regolamento, secondo orari e stagionalità; h) [posto auto nell'area recintata di via __ / lavanderia comune / bicicletta / colonnina di ricarica — solo se esistono, alle condizioni reali].",
+ "§ Nulla è dovuto dall'Ospite a titolo di tributi locali, a eccezione dell'imposta di soggiorno ove dovuta, addebitata a parte.",
+ "I servizi non inclusi (pulizie extra, biancheria extra, ospiti aggiuntivi, late check-out) hanno un listino (Allegato C).",
+ "[PROPRIETÀ] Le frequenze di pulizia e biancheria vanno decise, non lasciate «opzionali». Raccomandazione: pulizia ogni 15 giorni, biancheria mensile, piccola manutenzione inclusa (ARCHITETTURA §10).",
+],
+perche=[
+ "Consumi illimitati per dodici mesi a prezzo fisso, in una struttura nata per l'estate: è la scommessa sulla bolletta di gennaio che il vault segnala come la verifica a più alto impatto. ANALISI_GAP: «se un bilocale a gennaio costa 250 € invece di 150 €, il margine crolla». Una franchigia dichiarata in anticipo è un termine di prezzo trasparente, non una clausola vessatoria; un flat illimitato è un rischio non prezzato. La franchigia si fissa dopo aver letto le bollette invernali reali, non prima.",
+ "Wi-Fi: l'upload dentro un appartamento non è mai stato misurato (ANALISI_GAP §3). Non si promettono numeri; si promette un tempo di ripristino, che costa poco e per uno smart worker vale molto.",
+ "Pulizia e biancheria non possono restare «opzionali» in un contratto firmato, e non sono solo una scelta commerciale: per la Cassazione sono i servizi di natura alberghiera a distinguere il contratto di residence dalla locazione. Il modello del 15/06 (biancheria e pulizie a carico dell'ospite) svuota il contratto della parte che lo difende. Il punto di equilibrio di ARCHITETTURA §10 — pulizia ogni 15 giorni, biancheria mensile, piccola manutenzione, +60–80 €/mese — è al tempo stesso ciò che rende difendibile il prezzo e ciò che rende difendibile il contratto. [LEGALE] Far confermare il livello minimo di servizi che il legale ritiene sufficiente.",
+ "TARI e spese condominiali sono costi del Gestore (utenza non domestica) che un ospite di RTA non paga mai: elencarli «inclusi» è il lessico degli oneri accessori delle locazioni (art. 9 L. 392/1978), e un giudice lo legge come tale. Il tributo che riguarda davvero l'ospite è l'imposta di soggiorno: a San Mauro Pascoli si applica per un massimo di 5 pernottamenti consecutivi (regolamento comunale, delibere C.C. n. 21/2013 e n. 54/2013), quindi solo sui primi cinque giorni. Importo per categoria da verificare.",
+ "Vincolo di verità (ARCHITETTURA §8): posto auto scoperto a 400 metri, lavanderia a gettoni, nessuna lavastoviglie, piscina e spiaggia solo in stagione. Ciò che non esiste non si scrive; ciò che esiste si scrive com'è. Un'azienda che verifica una promessa non mantenuta chiude il rapporto e non lo riapre.",
+]),
+
+dict(id="3c", titolo="Art. 3 (c) — Modalità di pagamento", tags=[],
+era=[
+ "> Il canone mensile dovrà essere corrisposto in modalità anticipata entro il giorno [es. 5] di ogni mese tramite bonifico bancario sulle coordinate che verranno indicate dal Gestore.",
+],
+proposta=[
+ "§ 3.5 Alla firma, prima del check-in, l'Ospite versa la prima mensilità e il deposito di cui all'art. 4. Le mensilità successive sono corrisposte in via anticipata entro il giorno 1 di ciascun mese di soggiorno [oppure entro il 28 del mese precedente], mediante bonifico, addebito SDD o carta; non sono ammessi pagamenti in contanti.",
+ "§ 3.6 In caso di ritardo sono dovuti gli interessi di mora al tasso legale maggiorato di [__] punti, fermo quanto previsto all'art. 6.",
+ "Sostituire «canone» con «corrispettivo» o «tariffa mensile» in tutto il testo.",
+],
+perche=[
+ "«Entro il 5» è un pagamento posticipato di fatto: cinque giorni di servizio già erogati. Il principio del modello di giugno — «anticipato, prima dell'ingresso; nessun posticipato» (FONTE_03, ARCHITETTURA §9) — è il vero filtro anti-morosità della proprietà, e la bozza del 31/08 lo ha allentato senza motivo. Con prima mensilità e deposito all'ingresso, l'esposizione massima resta di un mese.",
+ "«Canone» è la parola della locazione e ricorre quattro volte nella bozza. Il lessico è coerenza, non cosmesi.",
+ "Pagamenti solo tracciabili: obbligo pratico (limite ai contanti) e, nella variante aziendale, condizione perché il rimborso sia non imponibile per il lavoratore e deducibile per l'impresa (L. 207/2024: art. 51, c. 5 e art. 95, c. 3-bis TUIR).",
+]),
+
+dict(id="4", titolo="Art. 4 — Deposito cauzionale e documenti di ingresso", tags=["PROPRIETÀ", "LEGALE"],
+era=[
+ "> l'Ospite versa contestualmente alla firma la somma di € [Inserire importo, es. 1.100,00 o 2.200,00] a titolo di deposito cauzionale infruttifero. Tale somma verrà restituita al Check-out, previa verifica dello stato dell'alloggio e previa deduzione di eventuali pendenze.",
+ "Nessun termine di restituzione, nessun riferimento a inventario o listino, nessuna verifica di solvibilità.",
+],
+proposta=[
+ "§ 4.1 A garanzia delle obbligazioni assunte e dei danni all'unità, agli arredi e alle dotazioni, l'Ospite versa alla firma un deposito di € [1.100 — pari a una mensilità], che non produce interessi; in alternativa, pre-autorizzazione di pari importo su carta di credito.",
+ "§ 4.2 Il deposito è restituito con bonifico entro 15 giorni dal check-out, dedotti i costi di ripristino documentati (listino Allegato C o preventivo), i corrispettivi non pagati, i consumi eccedenti la franchigia e l'imposta di soggiorno, come risultanti dal verbale di riconsegna.",
+ "§ 4.3 L'Ospite non può imputare il deposito al pagamento delle ultime mensilità.",
+ "§ 4.4 All'ingresso l'Ospite esibisce un documento d'identità valido (obbligo di legge) e, ai fini della valutazione della solvibilità, [lettera dell'azienda / contratto di lavoro / attestazione di partita IVA], trattati secondo l'informativa (Allegato D) e conservati non oltre 30 giorni dal check-out.",
+ "[PROPRIETÀ] Una mensilità (raccomandato) o due.",
+],
+perche=[
+ "Il modello di giugno prevedeva 300 € («piccola ma psicologica», FONTE_03); la bozza salta a 1.100–2.200. Per un soggiorno annuale una mensilità è lo standard del corporate housing e, sommata alla prima mensilità anticipata, porta a 2.200 € all'ingresso: sostenibile per il professionista milanese che confronta con un affitto da 1.500–1.800 €, già una barriera per il lavoratore in trasferta; 3.300 € (due mensilità) lo è per entrambi. Nella variante aziendale il deposito si sostituisce con la responsabilità contrattuale della società.",
+ "Termine di restituzione e verbale in contraddittorio: senza, il deposito è il primo contenzioso del rapporto e la prima recensione negativa.",
+ "«Lo scalo dalla cauzione»: il trucco dell'ultima mensilità va escluso per iscritto.",
+ "Documenti reddituali: prassi lecita, ma la busta paga è un dato sovradimensionato; la lettera dell'azienda dice di più — chi paga e per quanto — esponendo meno. In ogni caso finalità, minimizzazione e conservazione vanno dichiarate (ARCHITETTURA §9, punto 3). [LEGALE] Base giuridica e tempi di conservazione da confermare.",
+]),
+
+dict(id="5", titolo="Art. 5 — Regolamento, occupanti, residenza, accesso", tags=["LEGALE"],
+era=[
+ "> È severamente vietato sublocare o cedere a terzi l'uso dell'unità abitativa.",
+ "> L'alloggio dell'Ospite non può essere eletto a residenza anagrafica fissa, fatto salvo quanto concesso dalle normative locali per i soggiorni prolungati di lavoro/studio (domicilio temporaneo).",
+ "> La direzione si riserva il diritto di accesso all'unità per l'erogazione dei servizi (pulizie, manutenzioni urgenti, controlli di sicurezza) previo preavviso, salvi i casi di emergenza.",
+ "Nulla su: numero massimo di occupanti, visitatori, animali, fumo, uso dell'unità, segnalazione dei guasti, responsabilità per danni, oggetti di valore.",
+],
+proposta=[
+ "§ 5.1 L'unità è occupata esclusivamente dall'Ospite e dalle persone indicate in contratto, nel limite dei posti letto autorizzati. Chiunque altro pernotti, anche occasionalmente, deve essere comunicato in anticipo al Gestore e registrato (art. 7). È vietata la cessione a terzi, a qualunque titolo, dell'uso dell'unità.",
+ "§ 5.2 L'Ospite dichiara che il soggiorno ha natura temporanea, legata a [lavoro/studio], e di mantenere la propria residenza in [__]; prende atto che l'unità è parte di una struttura ricettiva e non è destinata a residenza stabile né a sede o domiciliazione di attività.",
+ "§ 5.3 Il Gestore accede all'unità per pulizie e cambio biancheria nei giorni e negli orari concordati, per manutenzione con preavviso di 24 ore, senza preavviso in caso di emergenza. L'Ospite non può sostituire le serrature né impedire l'accesso.",
+ "§ 5.4 L'Ospite custodisce l'unità con diligenza, segnala guasti e danni entro 24 ore, risponde dei danni causati da sé o dalle persone ammesse, non modifica arredi e impianti e rispetta il Regolamento (Allegato B) su quiete, fumo, animali, rifiuti, parcheggio e aree comuni. Non è consentito ricevere clientela o svolgere attività aperte al pubblico; il lavoro da remoto è consentito.",
+ "§ 5.5 Per le cose portate nella struttura il Gestore risponde nei limiti degli artt. 1783 e seguenti c.c.; denaro e oggetti di valore possono essere consegnati in custodia [se il servizio esiste].",
+ "Nessun divieto per i minori: il limite è il numero di posti letto autorizzati.",
+],
+perche=[
+ "«Sublocare» è lessico da locazione: si subloca ciò che si è preso in locazione. «Cessione a terzi dell'uso» copre tutto.",
+ "La residenza anagrafica non si governa per contratto: l'anagrafe iscrive chi dimora abitualmente in un luogo (art. 43 c.c., L. 1228/1954, DPR 223/1989) e una clausola che lo «vieta» non è opponibile al Comune — dà una sicurezza falsa. La convinzione «sono un albergo e non posso dare la residenza» (FONTE_03) va verificata con il legale; la protezione vera è la temporaneità di fatto — causale, residenza altrove, servizi, gestione unitaria — costruita con le altre clausole. Il divieto di domiciliare attività o sedi impedisce che l'indirizzo finisca in Camera di Commercio. [LEGALE] Formulazione del punto 5.2 da validare.",
+ "L'accesso per i servizi è la prova operativa della «gestione unitaria» richiesta dalla L.R. 16/2004 (un solo soggetto eroga alloggio e servizi accessori): un gestore che per un anno non entra è un locatore. Con giorni e orari concordati la clausola è anche accettabile per chi ci vive.",
+ "Artt. 1783–1785-quater c.c.: l'albergatore risponde delle cose portate dal cliente in albergo, fino a cento volte il prezzo giornaliero dell'alloggio, e i patti che escludono o limitano questa responsabilità sono nulli. Uno smart worker porta 3–5.000 € di attrezzatura per un anno: la clausola serve a informare, e la polizza RC della struttura va verificata con l'assicuratore per i soggiorni lunghi. La bozza non ne parla. [LEGALE]",
+ "Minori: il modello di giugno vietava «di introdurre minori senza autorizzazione» e lo stesso documento riconosceva che escludere le famiglie è illegale (ARCHITETTURA §9). La bozza del 31/08 ha tolto la clausola: va tenuta fuori. Il limite legittimo è la capienza autorizzata.",
+]),
+
+dict(id="6", titolo="Art. 6 — Recesso, risoluzione, riconsegna", tags=["PROPRIETÀ", "LEGALE"],
+era=[
+ "> Recesso dell'Ospite: L'Ospite ha facoltà di recedere anticipatamente dal contratto dandone comunicazione scritta a mezzo PEC o Raccomandata A/R con un preavviso minimo di [es. 2 o 3] mesi.",
+ "> Clausola Risolutiva Espressa: Il mancato pagamento anche di una sola mensilità entro 10 giorni dalla scadenza, o la violazione grave del Regolamento Interno, comporterà la risoluzione immediata del contratto ai sensi dell'art. 1456 c.c., con obbligo di rilascio immediato dei locali, fatto salvo il diritto al risarcimento del danno.",
+ "Nessun recesso del Gestore per cause oggettive; nessuna conseguenza per chi resta oltre il termine.",
+],
+proposta=[
+ "§ 6.1 Recesso dell'Ospite. Trascorsi i primi 3 mesi, l'Ospite può recedere con preavviso di 60 giorni comunicato per iscritto (PEC, raccomandata A/R o e-mail all'indirizzo [__] con conferma scritta di ricezione del Gestore). In caso di preavviso inferiore è dovuto il corrispettivo del periodo di preavviso mancante, fino a una mensilità, che il Gestore può trattenere dal deposito. Il recesso è senza oneri in caso di documentata cessazione o trasferimento del rapporto di lavoro che ha motivato il soggiorno.",
+ "§ 6.2 Recesso del Gestore. Solo per cause oggettive (chiusura della struttura per lavori, provvedimenti dell'autorità, forza maggiore), con preavviso di 60 giorni e restituzione del deposito e delle somme non godute, senza ulteriore indennizzo.",
+ "§ 6.3 Clausola risolutiva espressa (art. 1456 c.c.). Il contratto si risolve, su comunicazione scritta del Gestore, se: (i) il corrispettivo mensile non è pagato entro 10 giorni dalla scadenza, decorsi ulteriori 5 giorni da diffida scritta; (ii) pernottano persone non comunicate e non registrate; (iii) l'uso dell'unità è ceduto a terzi; (iv) il Regolamento è violato in modo grave o reiterato, dopo contestazione scritta.",
+ "§ 6.4 Alla cessazione per qualunque causa l'Ospite riconsegna l'unità entro 3 giorni. Per ogni giorno successivo è dovuta un'indennità pari alla tariffa giornaliera di listino dell'unità (€ [__]), salvo il maggior danno. Sulle cose dell'Ospite presenti nella struttura il Gestore esercita il privilegio di cui all'art. 2760 c.c.",
+ "[PROPRIETÀ] Periodo minimo (3 mesi) e preavviso (60 giorni) da confermare. [LEGALE] 6.2, 6.3 e 6.4 da validare; anche in RTA l'allontanamento di chi rifiuta di uscire non è un atto materiale immediato: la clausola rende rapida e solida l'azione legale, non la sostituisce (ARCHITETTURA §9, punto 2).",
+],
+perche=[
+ "Due o tre mesi via PEC — che un privato raramente ha — è attrito per lo smart worker e contraddice il messaggio commerciale della stessa proprietà: «si esce con trenta giorni, nessun vincolo di durata» (ARCHITETTURA §9). Sessanta giorni con e-mail confermata è lo standard del corporate housing; una penale certa e limitata (una mensilità) regge in giudizio meglio di un preavviso lungo che un consumatore contesterà come vessatorio (Codice del Consumo, art. 33, c. 2, lett. e-f).",
+ "Il periodo minimo di tre mesi protegge dal «soggiorno di prova» a tariffa mensile; l'uscita senza oneri per perdita del lavoro toglie l'obiezione principale di chi firma per un anno.",
+ "Recesso del Gestore per cause oggettive: oggi la bozza non prevede come uscire da un contratto annuale se la struttura deve chiudere o fare lavori — e il piano prevede investimenti (lavastoviglie, postazioni, rete).",
+ "«Risoluzione immediata» e «rilascio immediato» promettono ciò che la legge non consegna: la diffida di cinque giorni costa nulla e rende la risoluzione robusta (gravità dell'inadempimento, art. 1455 c.c.). L'indennità di occupazione alla tariffa giornaliera di listino (65–87 €/notte in stagione contro i circa 36 €/giorno del contratto) rende costoso trattenersi ed è legittima. L'art. 2760 c.c. è uno strumento vero dell'albergatore, ma si esercita nelle forme di legge, non trattenendo i bagagli.",
+]),
+
+dict(id="7", titolo="Art. 7 — Pubblica sicurezza e adempimenti", tags=[],
+era=[
+ "> Il Residence provvederà a registrare le generalità dell'Ospite sul portale telematico \"Alloggiati Web\" della Polizia di Stato in conformità alle norme di Pubblica Sicurezza vigenti per le strutture ricettive.",
+],
+proposta=[
+ "§ 7.1 Il Gestore identifica di persona l'Ospite e ogni persona ammessa e ne trasmette le generalità alla Questura tramite il portale Alloggiati Web entro 24 ore dall'arrivo (art. 109 TULPS; D.M. 7 gennaio 2013), ripetendo l'adempimento a ogni variazione degli occupanti. L'Ospite esibisce un documento valido per sé e per ciascuna persona ammessa.",
+ "§ 7.2 Il Gestore adempie alle comunicazioni statistiche regionali e riscuote l'imposta di soggiorno secondo il regolamento del Comune di San Mauro Pascoli.",
+],
+perche=[
+ "Il termine di 24 ore è di legge: scriverlo evita malintesi al check-in e dà al Gestore il diritto contrattuale di pretendere i documenti anche a metà soggiorno.",
+ "«Per ogni persona ammessa» chiude la falla degli occupanti non registrati; nella variante aziendale, con lavoratori a rotazione, è la clausola operativa più importante.",
+ "L'imposta di soggiorno va agganciata qui e all'art. 3, così il conto al check-in non ha sorprese.",
+]),
+
+dict(id="8", titolo="Art. 8 — Foro competente e legge applicabile", tags=["LEGALE"],
+era=[
+ "> Per qualsiasi controversia derivante dall'interpretazione o dall'esecuzione del presente contratto, sarà esclusivamente competente il Foro di Rimini.",
+],
+proposta=[
+ "§ 8.1 (verso persone fisiche) Per le controversie con un Ospite consumatore è competente il giudice del luogo di residenza o domicilio elettivo dell'Ospite (art. 66-bis Codice del Consumo). Le parti si impegnano a tentare una composizione bonaria prima di adire il giudice.",
+ "§ 8.1 (verso aziende) Foro esclusivo di Forlì.",
+ "§ 8.2 Il contratto è regolato dalla legge italiana; il testo italiano prevale su ogni traduzione di cortesia.",
+],
+perche=[
+ "Rimini è il foro sbagliato anche geograficamente: San Mauro Mare è frazione di San Mauro Pascoli, provincia di Forlì-Cesena, circondario del Tribunale di Forlì. È il tipo di errore che un ufficio acquisti nota alla prima lettura.",
+ "Con un consumatore, la clausola che sposta il foro fuori dalla sua residenza è presunta vessatoria (art. 33, c. 2, lett. u) e nulla (art. 36): la nullità non si sana con la doppia firma. La clausola resterebbe inefficace, lasciando il segno di una redazione approssimativa.",
+ "Tra imprese la scelta del foro è valida e utile: si sceglie quello del Gestore.",
+ "La versione in lingua serve al target estero indicato nel briefing del 26/08 (clientela est-europea).",
+]),
+
+dict(id="F", titolo="Sottoscrizione, clausole finali, allegati", tags=["LEGALE"],
+era=[
+ "> Letto, approvato e sottoscritto a [Città], il [GG/MM/AAAA]. IL GESTORE (Residence Veliero) — L'OSPITE",
+ "Nessuna approvazione specifica delle clausole, nessun allegato, nessuna informativa privacy, nessun recapito per le comunicazioni, nulla sulla registrazione.",
+],
+proposta=[
+ "§ Comunicazioni. Le parti eleggono i recapiti indicati in epigrafe (PEC/e-mail); ogni variazione va comunicata per iscritto.",
+ "§ Trattamento dei dati. L'Ospite riceve l'informativa (Allegato D) sui trattamenti connessi al contratto, agli obblighi di pubblica sicurezza, alla valutazione di solvibilità e alla videosorveglianza delle aree comuni [se presente].",
+ "§ Imposta di registro. Il contratto, avente a oggetto prestazioni soggette a IVA, è registrato solo in caso d'uso (art. 5, c. 2, DPR 131/1986).",
+ "§ Ai sensi degli artt. 1341 e 1342 c.c. l'Ospite dichiara di approvare specificamente le clausole: 2.2 (cessazione senza rinnovo), 3.4 (consumi eccedenti la franchigia), 4 (deposito), 6.1 (limiti al recesso e penale), 6.3 (clausola risolutiva espressa), 6.4 (indennità di occupazione), 8 (foro). — seconda firma dell'Ospite",
+ "Allegati: A — Verbale di consegna, inventario, fotografie, lettura contatori; B — Regolamento della struttura; C — Listino servizi extra e costi di ripristino; D — Informativa privacy. Firma digitale o con OTP ammessa.",
+],
+perche=[
+ "Senza la doppia sottoscrizione, le clausole che la proprietà vuole di più — limiti al recesso, risoluzione, penali, foro — sono inefficaci verso l'Ospite (art. 1341, c. 2, c.c.). È il vuoto più costoso della bozza.",
+ "Niente inventario, niente trattenute sul deposito; niente listino, ogni trattenuta è discutibile.",
+ "L'informativa privacy è un obbligo (art. 13 GDPR) e la richiesta di documenti reddituali la rende indispensabile.",
+ "Un contratto di ospitalità non si registra come una locazione (che sopra i 30 giorni va registrata entro 30 giorni con imposta del 2%): registrarlo come locazione sarebbe contraddirsi da soli. [LEGALE] Da confermare con il commercialista.",
+]),
+
+dict(id="M", titolo="Clausole che mancano del tutto", tags=["PROPRIETÀ"],
+era=["La bozza non tratta: assicurazione, inagibilità dell'unità per cause non imputabili all'Ospite, lingua, ospiti aziendali."],
+proposta=[
+ "§ Assicurazione. Il Gestore mantiene una polizza di responsabilità civile per l'attività ricettiva. L'Ospite è invitato a dotarsi di copertura per i propri beni e per la responsabilità civile verso terzi.",
+ "§ Inagibilità. Se l'unità diventa inutilizzabile per cause non imputabili all'Ospite per più di 3 giorni consecutivi, il Gestore offre un'unità equivalente o riduce proporzionalmente il corrispettivo per i giorni eccedenti.",
+ "§ Lingua. Il contratto è redatto in italiano; su richiesta è fornita una traduzione di cortesia in inglese, senza valore contrattuale.",
+ "Variante aziendale: v. sezione dedicata.",
+],
+perche=[
+ "Assicurazione: la responsabilità ex art. 1783 c.c. e i danni da un residente annuale (allagamento, incendio da cucina) non sono il rischio del turista di una settimana; l'assicuratore va informato del nuovo uso. [PROPRIETÀ] Verificare la polizza in essere.",
+ "Inagibilità: un guasto alla caldaia a gennaio con un ospite che paga 1.100 €/mese è un caso concreto; una regola scritta evita la trattativa sotto stress e la recensione.",
+ "Lingua: il briefing del 26/08 indica clientela estera; senza clausola sulla prevalenza dell'italiano ogni traduzione diventa un secondo contratto.",
+]),
+]
+
+# ------------------------------------------------------------------ variante B2B
+B2B_INTRO = ("Il piano del 31/08 dà priorità alla landing Corporate Workforce B2B: aziende e agenzie che alloggiano personale "
+             "per cantieri e commesse in Romagna. La bozza è pensata per una persona fisica e non si adatta: un ufficio acquisti "
+             "non firma un contratto in cui il dipendente è la parte, non versa un deposito e non accetta un foro consumatore. "
+             "Serve una seconda versione — un contratto quadro — costruita sulla stessa base. Le condizioni sotto vanno decise dalla "
+             "proprietà prima di scrivere la landing Corporate: sono il contenuto della pagina (ARCHITETTURA §5).")
+
+B2B = [
+ ("Parti", "Contraente è la società (ragione sociale, P.IVA, PEC, codice destinatario SDI). Gli occupanti sono dipendenti o collaboratori indicati per iscritto, sostituibili con comunicazione di 48 ore, ciascuno identificato e registrato all'arrivo.", "La rotazione dei lavoratori è la normalità dei cantieri: se ogni cambio richiede un nuovo contratto, il cliente sceglie chi non lo richiede (ARCHITETTURA §5, punto 3)."),
+ ("Oggetto", "Allotment di [N] unità per il periodo [__], con opzione su ulteriori unità a preavviso di [15] giorni, soggetta a disponibilità.", "Il B2B compra disponibilità, non un appartamento: l'allotment con opzione è il formato che le agenzie riconoscono (§5, punto 4)."),
+ ("Corrispettivo", "€ [__] al mese per unità, oltre IVA 10%; fattura elettronica mensile anticipata. Pagamento a [30] giorni data fattura solo con prima mensilità anticipata o garanzia; in alternativa, anticipato.", "Anticipo o 30 giorni è la decisione più delicata (§5, punto 2). I pagamenti tracciati sono comunque obbligatori per il cliente: rimborsi non imponibili per il lavoratore e costo deducibile per l'impresa solo se tracciabili (L. 207/2024, art. 51 c. 5 e art. 95 c. 3-bis TUIR). Il contratto lo scrive, così diventa un servizio e non una richiesta."),
+ ("Garanzia", "Nessun deposito per occupante; la società risponde dei danni causati dagli occupanti e delle somme dovute, con eventuale deposito unico sull'allotment.", "Un'azienda con partita IVA e fattura è già la garanzia; il deposito per ogni lavoratore è un attrito amministrativo che il cliente non accetta."),
+ ("Servizi e SLA", "Stesso elenco del contratto base, più: check-in fuori orario con modalità dichiarata; referente unico con orari; risposta a una richiesta di disponibilità entro [24] ore.", "Un tecnico che arriva alle 22 di domenica è il caso normale, non l'eccezione (§5, punti 6-8). Lo SLA scritto è ciò che la landing Corporate potrà promettere."),
+ ("Occupanti e condotta", "Numero massimo per unità pari ai posti letto autorizzati; la società si obbliga a far rispettare il Regolamento e risponde delle violazioni; il Gestore può chiedere la sostituzione di un occupante per violazioni gravi.", "In una struttura che d'inverno ospita anche smart worker singoli, la convivenza è un rischio reale: la responsabilità in capo alla società è l'unico strumento efficace."),
+ ("Durata e uscita", "Durata legata al progetto [__]; riduzione dell'allotment o recesso per singola unità con 30 giorni di preavviso; nessun rinnovo tacito, con priorità sulla disponibilità successiva.", "I cantieri finiscono prima o dopo il previsto; la flessibilità per unità è ciò che fa preferire il Veliero a un contratto di locazione aziendale."),
+ ("Foro, riservatezza, referenze", "Foro esclusivo di Forlì. Clausola di riservatezza sulle condizioni economiche. Autorizzazione espressa, revocabile, a citare il cliente come referenza.", "Tra imprese il foro del Gestore è valido. L'autorizzazione a nominare il cliente serve alla landing Corporate: oggi non è stata chiesta né a Gattinoni né a Uvet (§5, punto 10)."),
+]
+
+DECISIONI = [
+ ("Livello di servizio, e quindi prezzo", "Frequenza di pulizia e cambio biancheria, piccola manutenzione inclusa. È il nodo del meeting; il contratto lo scrive dopo, non prima."),
+ ("Franchigia consumi", "Da fissare dopo aver letto le bollette invernali reali di almeno un bilocale (la verifica a più alto impatto del vault). Senza numeri, nessun flat."),
+ ("Durata", "12 mesi fissi, oppure uscita dell'Ospite dopo il 3° mese con 60 giorni di preavviso. E su quante unità: quota dedicata al lungo soggiorno o tutte."),
+ ("Deposito", "Una mensilità (raccomandato) o due; documento di solvibilità da richiedere (lettera dell'azienda, contratto, partita IVA)."),
+ ("Dotazioni da scrivere", "Parcheggio (400 m, scoperto), lavanderia (a gettoni), Wi-Fi (misurare l'upload), aree comuni invernali: si scrive solo ciò che esiste, com'è."),
+ ("Termini B2B", "Anticipo o 30 giorni; allotment; rotazione degli occupanti; check-in fuori orario; referente e orari."),
+ ("Imposta di soggiorno", "Importo per la categoria del Veliero e modalità di addebito nei primi 5 giorni."),
+ ("Titolo amministrativo", "Estremi esatti di SCIA/autorizzazione e classificazione regionale da riportare in epigrafe."),
+ ("Polizza", "Informare l'assicuratore del nuovo uso (soggiorni annuali) e verificare la copertura per le cose portate in struttura."),
+]
+
+LEGALE = [
+ "Natura del rapporto e livello minimo di servizi perché il contratto resti ospitalità in RTA e non venga riqualificato come locazione (L.R. 16/2004; Cass. sul contratto di residence).",
+ "Compatibilità del soggiorno annuale con il titolo RTA, la classificazione e la destinazione urbanistica dell'immobile.",
+ "Clausola sulla residenza (5.2): formulazione opponibile e coerente con la disciplina anagrafica.",
+ "Risoluzione e riconsegna (6.3-6.4): diffida, indennità di occupazione, privilegio ex art. 2760 c.c., procedura effettiva di rilascio.",
+ "Responsabilità per le cose portate in struttura (artt. 1783-1785-quater c.c.) e coordinamento con la polizza.",
+ "Doppia sottoscrizione (artt. 1341-1342 c.c.) e verifica delle clausole alla luce del Codice del Consumo (artt. 33-36, 66-bis).",
+ "Registrazione solo in caso d'uso (art. 5 DPR 131/1986) e trattamento IVA — con il commercialista.",
+ "Documenti reddituali: base giuridica, minimizzazione e conservazione (GDPR, art. 13).",
+]
+
+VALUTAZIONE = [
+ ("Bozza del 31/08 così com'è", "5/10", "Impianto giusto (ospitalità in RTA), lessico da locazione, tre errori oggettivi, sei clausole assenti, nessuna variante aziendale."),
+ ("Testo rivisto secondo questa tabella, prima del legale", "8/10", "Coerente con la natura di ospitalità, con i vincoli reali della struttura e con il piano B2B del 31/08."),
+ ("Fatto quando", "—", "La proprietà ha preso le decisioni della sezione «Decisioni», il legale ha validato gli otto punti, i quattro allegati esistono e il primo contratto è firmato con la doppia sottoscrizione."),
+]
+
+RIFERIMENTI = [
+ ("L.R. Emilia-Romagna 28 luglio 2004, n. 16 — Disciplina delle strutture ricettive dirette all'ospitalità (definizione di RTA e di gestione unitaria)", "https://demetra.regione.emilia-romagna.it/al/articolo?urn=er:assemblealegislativa:legge:2004%3B16&dl_t=text/xml&dl_a=y&dl_id=10&pr=idx,0%3Bartic,1%3Barticparziale,0&ev=1"),
+ ("Regione Emilia-Romagna — Alberghi e residenze turistiche alberghiere (RTA e Condhotel)", "https://imprese.regione.emilia-romagna.it/turismo/doc/normativa/alberghi/alberghi-e-residenze-turistiche-alberghiere-2013-rta-e-condhotel"),
+ ("Comune di San Mauro Pascoli — Imposta di soggiorno (massimo 5 pernottamenti consecutivi; delibere C.C. 21/2013 e 54/2013)", "https://www.comune.sanmauropascoli.fc.it/servizi/Procedimenti/ricerca_fase03.aspx?id=10954"),
+ ("Il contratto di residence: differenze rispetto ai B&B e alle locazioni (giurisprudenza di Cassazione sui servizi alberghieri inclusi)", "https://www.ecnews.it/contratto-residence-differenze-rispetto-ai-bb-alle-locazioni/"),
+ ("Il contratto d'albergo — Cass. civ. sez. III, 22 gennaio 2002, n. 707", "https://www.filodiritto.com/il-contratto-dalbergo"),
+ ("Legge di Bilancio 2025 (L. 207/2024): tracciabilità delle spese di trasferta — art. 51 c. 5 e art. 95 c. 3-bis TUIR", "https://www.edotto.com/articolo/spese-di-trasferta-e-rappresentanza-dalla-legge-di-bilancio-2025-nuovi-obblighi-di-tracciabilita"),
+ ("Codice Civile: artt. 1341-1342 (clausole vessatorie), 1455-1456 (risoluzione), 1783-1785-quater (cose portate in albergo), 2760 (privilegio dell'albergatore)", ""),
+ ("Codice del Consumo (D.Lgs. 206/2005): artt. 33-36 (clausole vessatorie), 48-49 (informazioni e prezzo), 66-bis (foro del consumatore)", ""),
+ ("Art. 109 TULPS e D.M. 7 gennaio 2013 (Alloggiati Web, 24 ore); L. 431/1998 art. 13; L. 392/1978 art. 9; DPR 131/1986 art. 5; DPR 633/1972 Tab. A parte III n. 120", ""),
+ ("Repo: docs/FONTE_03_AFFITTO_ANNUALE_20260615.md; docs/ARCHITETTURA_SISTEMA_2026.md §5, §8-10; docs/ANALISI_GAP_20260826.md §3, §5", ""),
+]
+
+# ================================================================== helpers
+TAG_RE = re.compile(r"\[(LEGALE|PROPRIETÀ)\]")
+
+def kind(s):
+    if s.startswith("§ "): return "clause", s[2:]
+    if s.startswith("> "): return "quote", s[2:]
+    return "note", s
+
+# ================================================================== MARKDOWN
+def md_cell(items):
+    out = []
+    for s in items:
+        k, t = kind(s)
+        t = TAG_RE.sub(lambda m: f"**{m.group(1)}**", t)
+        if k == "clause": out.append(f"*{t}*")
+        elif k == "quote": out.append(f"«{t}»")
+        else: out.append(t)
+    return "<br><br>".join(x.replace("|", "\\|") for x in out)
+
+def build_md():
+    L = []
+    L.append(f"# {TITOLO}\n\n**{SOTTOTITOLO}**\n")
+    L.append("| | |\n|---|---|")
+    for k, v in META: L.append(f"| **{k}** | {v} |")
+    L.append("\n## Sintesi in dieci punti\n")
+    for i, s in enumerate(SINTESI, 1): L.append(f"{i}. {s}")
+    L.append("\n## Come leggere la tabella\n")
+    L.append("Tre colonne per ogni articolo: **Com'era** cita la bozza del 31/08 (virgolette = testo letterale); **Come dovrebbe essere** propone il testo (in corsivo le clausole pronte da incollare, tra parentesi quadre i dati da inserire); **Perché** motiva ogni cambiamento con la fonte. Le etichette **LEGALE** e **PROPRIETÀ** marcano rispettivamente ciò che va validato da un avvocato e ciò che decidono i titolari.\n")
+    L.append("## Revisione articolo per articolo\n")
+    L.append("| Com'era (bozza 31/08) | Come dovrebbe essere | Perché |\n|---|---|---|")
+    for r in ROWS:
+        tags = " ".join(f"`{t}`" for t in r["tags"])
+        L.append(f"| **{r['titolo']}** {tags} | | |")
+        L.append(f"| {md_cell(r['era'])} | {md_cell(r['proposta'])} | {md_cell(r['perche'])} |")
+    L.append("\n## La variante aziendale (contratto quadro B2B)\n")
+    L.append(B2B_INTRO + "\n")
+    L.append("| Voce | Come dovrebbe essere | Perché |\n|---|---|---|")
+    for a, b, c in B2B: L.append(f"| **{a}** | {b} | {c} |")
+    L.append("\n## Decisioni della proprietà prima della firma\n")
+    L.append("| Decisione | Contenuto |\n|---|---|")
+    for a, b in DECISIONI: L.append(f"| **{a}** | {b} |")
+    L.append("\n## Punti da far validare dal legale\n")
+    for i, s in enumerate(LEGALE, 1): L.append(f"{i}. {s}")
+    L.append("\n## Valutazione\n")
+    L.append("| | Voto | Criterio |\n|---|---|---|")
+    for a, b, c in VALUTAZIONE: L.append(f"| **{a}** | {b} | {c} |")
+    L.append("\n## Riferimenti\n")
+    for t, u in RIFERIMENTI: L.append(f"- {t}" + (f" — <{u}>" if u else ""))
+    L.append("\n---\n*Revisione consulenziale a cura di NexaFrontiers, 31/08/2026. Non sostituisce il parere di un avvocato del settore ricettivo.*\n")
+    return "\n".join(L)
+
+# ================================================================== DOCX
+def build_docx(path):
+    from docx import Document
+    from docx.shared import Pt, Cm, RGBColor
+    from docx.enum.section import WD_ORIENT
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.enum.table import WD_TABLE_ALIGNMENT
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+
+    NAVY, PRIMARY, INK, MUTED = RGBColor(0x0D,0x5A,0x8A), RGBColor(0x18,0x75,0xAB), RGBColor(0x15,0x24,0x33), RGBColor(0x5B,0x6B,0x7A)
+
+    doc = Document()
+    sec = doc.sections[0]
+    sec.orientation = WD_ORIENT.LANDSCAPE
+    sec.page_width, sec.page_height = Cm(29.7), Cm(21.0)
+    for m in ("left_margin","right_margin"): setattr(sec, m, Cm(1.6))
+    sec.top_margin = sec.bottom_margin = Cm(1.5)
+
+    st = doc.styles["Normal"]; st.font.name = "Calibri"; st.font.size = Pt(10)
+    st.element.rPr.rFonts.set(qn("w:eastAsia"), "Calibri")
+    for name, size, color in (("Heading 1", 18, NAVY), ("Heading 2", 13, PRIMARY), ("Title", 24, NAVY)):
+        s = doc.styles[name]; s.font.name = "Calibri"; s.font.size = Pt(size); s.font.color.rgb = color; s.font.bold = True
+        s.element.rPr.rFonts.set(qn("w:ascii"), "Calibri"); s.element.rPr.rFonts.set(qn("w:hAnsi"), "Calibri")
+
+    def shade(cell, hexcolor):
+        tcPr = cell._tc.get_or_add_tcPr(); shd = OxmlElement("w:shd")
+        shd.set(qn("w:val"), "clear"); shd.set(qn("w:color"), "auto"); shd.set(qn("w:fill"), hexcolor); tcPr.append(shd)
+
+    def set_widths(table, widths):
+        for row in table.rows:
+            for i, w in enumerate(widths): row.cells[i].width = w
+
+    def repeat_header(row):
+        trPr = row._tr.get_or_add_trPr(); el = OxmlElement("w:tblHeader"); el.set(qn("w:val"), "true"); trPr.append(el)
+
+    def no_split(row):
+        trPr = row._tr.get_or_add_trPr(); el = OxmlElement("w:cantSplit"); el.set(qn("w:val"), "true"); trPr.append(el)
+
+    def add_runs(p, text, base_italic=False, base_color=None, size=9):
+        """render text with [LEGALE]/[PROPRIETÀ] tags in bold navy"""
+        pos = 0
+        for m in TAG_RE.finditer(text):
+            if m.start() > pos:
+                r = p.add_run(text[pos:m.start()]); r.italic = base_italic; r.font.size = Pt(size)
+                if base_color: r.font.color.rgb = base_color
+            r = p.add_run(m.group(1)); r.bold = True; r.font.size = Pt(size); r.font.color.rgb = NAVY
+            pos = m.end()
+        if pos < len(text):
+            r = p.add_run(text[pos:]); r.italic = base_italic; r.font.size = Pt(size)
+            if base_color: r.font.color.rgb = base_color
+
+    def fill_cell(cell, items, size=9):
+        cell.text = ""
+        first = True
+        for s in items:
+            k, t = kind(s)
+            p = cell.paragraphs[0] if first else cell.add_paragraph(); first = False
+            p.paragraph_format.space_after = Pt(4); p.paragraph_format.space_before = Pt(0)
+            if k == "quote":
+                add_runs(p, "«" + t + "»", base_italic=True, base_color=MUTED, size=size)
+            elif k == "clause":
+                p.paragraph_format.left_indent = Cm(0.3)
+                add_runs(p, t, base_italic=True, base_color=INK, size=size)
+            else:
+                add_runs(p, t, size=size)
+
+    # ---- frontespizio
+    doc.add_paragraph(TITOLO, style="Title")
+    p = doc.add_paragraph(); r = p.add_run(SOTTOTITOLO); r.bold = True; r.font.size = Pt(12); r.font.color.rgb = PRIMARY
+    t = doc.add_table(rows=0, cols=2); t.style = "Table Grid"; t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    for k, v in META:
+        c = t.add_row().cells; c[0].text = ""; rr = c[0].paragraphs[0].add_run(k); rr.bold = True; rr.font.size = Pt(9); shade(c[0], "E8F1F8")
+        c[1].text = ""; add_runs(c[1].paragraphs[0], v, size=9)
+    set_widths(t, [Cm(4.5), Cm(22)])
+
+    doc.add_paragraph()
+    doc.add_paragraph("Sintesi in dieci punti", style="Heading 1")
+    for i, s in enumerate(SINTESI, 1):
+        p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(4)
+        r = p.add_run(f"{i}.  "); r.bold = True; r.font.color.rgb = PRIMARY; add_runs(p, s, size=10)
+
+    doc.add_paragraph("Come leggere la tabella", style="Heading 2")
+    add_runs(doc.add_paragraph(), "Tre colonne per ogni articolo: «Com'era» cita la bozza del 31/08 (in corsivo grigio il testo letterale); «Come dovrebbe essere» propone il testo — in corsivo rientrato le clausole pronte da incollare, tra parentesi quadre i dati da inserire; «Perché» motiva ogni cambiamento con la fonte. Le etichette [LEGALE] e [PROPRIETÀ] marcano ciò che va validato da un avvocato e ciò che decidono i titolari.", size=10)
+
+    # ---- tabella principale
+    doc.add_page_break()
+    doc.add_paragraph("Revisione articolo per articolo", style="Heading 1")
+    tbl = doc.add_table(rows=1, cols=3); tbl.style = "Table Grid"; tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+    hdr = tbl.rows[0]; repeat_header(hdr)
+    for i, h in enumerate(("COM'ERA — bozza del 31/08", "COME DOVREBBE ESSERE", "PERCHÉ")):
+        c = hdr.cells[i]; c.text = ""; r = c.paragraphs[0].add_run(h); r.bold = True; r.font.size = Pt(10); r.font.color.rgb = RGBColor(0xFF,0xFF,0xFF); shade(c, "0D5A8A")
+    for row in ROWS:
+        tr = tbl.add_row(); no_split(tr)
+        m = tr.cells[0].merge(tr.cells[2]); m.text = ""
+        p = m.paragraphs[0]; r = p.add_run(row["titolo"]); r.bold = True; r.font.size = Pt(11); r.font.color.rgb = NAVY
+        for tg in row["tags"]:
+            r = p.add_run("   " + tg); r.bold = True; r.font.size = Pt(8); r.font.color.rgb = RGBColor(0x8A,0x5A,0x00) if tg == "PROPRIETÀ" else PRIMARY
+        shade(m, "E8F1F8")
+        tr = tbl.add_row()
+        fill_cell(tr.cells[0], row["era"]); fill_cell(tr.cells[1], row["proposta"]); fill_cell(tr.cells[2], row["perche"])
+        shade(tr.cells[0], "F7F9FB")
+    set_widths(tbl, [Cm(8.2), Cm(9.6), Cm(8.7)])
+
+    # ---- B2B
+    doc.add_page_break()
+    doc.add_paragraph("La variante aziendale (contratto quadro B2B)", style="Heading 1")
+    add_runs(doc.add_paragraph(), B2B_INTRO, size=10)
+    t2 = doc.add_table(rows=1, cols=3); t2.style = "Table Grid"
+    for i, h in enumerate(("VOCE", "COME DOVREBBE ESSERE", "PERCHÉ")):
+        c = t2.rows[0].cells[i]; c.text = ""; r = c.paragraphs[0].add_run(h); r.bold = True; r.font.size = Pt(10); r.font.color.rgb = RGBColor(0xFF,0xFF,0xFF); shade(c, "0D5A8A")
+    repeat_header(t2.rows[0])
+    for a, b, c_ in B2B:
+        tr = t2.add_row(); no_split(tr)
+        tr.cells[0].text = ""; r = tr.cells[0].paragraphs[0].add_run(a); r.bold = True; r.font.size = Pt(9); shade(tr.cells[0], "E8F1F8")
+        tr.cells[1].text = ""; add_runs(tr.cells[1].paragraphs[0], b, size=9)
+        tr.cells[2].text = ""; add_runs(tr.cells[2].paragraphs[0], c_, size=9)
+    set_widths(t2, [Cm(3.6), Cm(11.4), Cm(11.5)])
+
+    # ---- decisioni / legale / valutazione
+    doc.add_paragraph()
+    doc.add_paragraph("Decisioni della proprietà prima della firma", style="Heading 1")
+    t3 = doc.add_table(rows=0, cols=2); t3.style = "Table Grid"
+    for a, b in DECISIONI:
+        tr = t3.add_row(); tr.cells[0].text = ""; r = tr.cells[0].paragraphs[0].add_run(a); r.bold = True; r.font.size = Pt(9); shade(tr.cells[0], "FFF6D6")
+        tr.cells[1].text = ""; add_runs(tr.cells[1].paragraphs[0], b, size=9)
+    set_widths(t3, [Cm(6), Cm(20.5)])
+
+    doc.add_paragraph("Punti da far validare dal legale", style="Heading 1")
+    for i, s in enumerate(LEGALE, 1):
+        p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(3); r = p.add_run(f"{i}.  "); r.bold = True; r.font.color.rgb = PRIMARY; add_runs(p, s, size=10)
+
+    doc.add_paragraph("Valutazione", style="Heading 1")
+    t4 = doc.add_table(rows=0, cols=3); t4.style = "Table Grid"
+    for a, b, c_ in VALUTAZIONE:
+        tr = t4.add_row()
+        tr.cells[0].text = ""; r = tr.cells[0].paragraphs[0].add_run(a); r.bold = True; r.font.size = Pt(9); shade(tr.cells[0], "E8F1F8")
+        tr.cells[1].text = ""; r = tr.cells[1].paragraphs[0].add_run(b); r.bold = True; r.font.size = Pt(14); r.font.color.rgb = NAVY; tr.cells[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+        tr.cells[2].text = ""; add_runs(tr.cells[2].paragraphs[0], c_, size=9)
+    set_widths(t4, [Cm(7), Cm(2.5), Cm(17)])
+
+    doc.add_paragraph("Riferimenti", style="Heading 1")
+    for t_, u in RIFERIMENTI:
+        p = doc.add_paragraph(style="List Bullet"); p.paragraph_format.space_after = Pt(2)
+        r = p.add_run(t_); r.font.size = Pt(9)
+        if u: r2 = p.add_run("  " + u); r2.font.size = Pt(8); r2.font.color.rgb = PRIMARY
+    p = doc.add_paragraph(); r = p.add_run("Revisione consulenziale a cura di NexaFrontiers, 31/08/2026. Non sostituisce il parere di un avvocato del settore ricettivo."); r.italic = True; r.font.size = Pt(9); r.font.color.rgb = MUTED
+
+    # footer
+    fp = sec.footer.paragraphs[0]; fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    fr = fp.add_run("Residence Veliero — Revisione contratto Long Stay — 31/08/2026"); fr.font.size = Pt(8); fr.font.color.rgb = MUTED
+    doc.save(path)
+
+# ================================================================== HTML
+def h(s): return html.escape(s, quote=False)
+
+def html_items(items):
+    out = []
+    for s in items:
+        k, t = kind(s)
+        t = h(t)
+        t = TAG_RE.sub(lambda m: f'<span class="pill pill-{ "legale" if m.group(1)=="LEGALE" else "prop"}">{m.group(1)}</span>', t)
+        if k == "quote": out.append(f'<p class="q">«{t}»</p>')
+        elif k == "clause": out.append(f'<p class="clause">{t}</p>')
+        else: out.append(f"<p>{t}</p>")
+    return "\n".join(out)
+
+def build_html():
+    rows_html = []
+    for r in ROWS:
+        pills = "".join(f'<span class="pill pill-{ "legale" if t=="LEGALE" else "prop"}">{t}</span>' for t in r["tags"])
+        rows_html.append(f'''
+<section class="row" id="r{r["id"]}">
+  <h3 class="row-title">{h(r["titolo"])} {pills}</h3>
+  <div class="cols">
+    <div class="col col-era"><div class="col-label">Com'era</div>{html_items(r["era"])}</div>
+    <div class="col col-new"><div class="col-label">Come dovrebbe essere</div>{html_items(r["proposta"])}</div>
+    <div class="col col-why"><div class="col-label">Perché</div>{html_items(r["perche"])}</div>
+  </div>
+</section>''')
+    toc = "".join(f'<a href="#r{r["id"]}">{h(r["titolo"])}</a>' for r in ROWS)
+    b2b = "".join(f'<tr><th scope="row">{h(a)}</th><td>{h(b)}</td><td>{h(c)}</td></tr>' for a, b, c in B2B)
+    dec = "".join(f'<tr><th scope="row">{h(a)}</th><td>{h(b)}</td></tr>' for a, b in DECISIONI)
+    leg = "".join(f"<li>{h(s)}</li>" for s in LEGALE)
+    val = "".join(f'<tr><th scope="row">{h(a)}</th><td class="score">{h(b)}</td><td>{h(c)}</td></tr>' for a, b, c in VALUTAZIONE)
+    refs = "".join(f'<li>{h(t)}' + (f' — <a href="{u}">{h(u[:70])}…</a>' if u else "") + "</li>" for t, u in RIFERIMENTI)
+    def pillify(t): return TAG_RE.sub(lambda m: '<span class="pill pill-%s">%s</span>' % ("legale" if m.group(1)=="LEGALE" else "prop", m.group(1)), t)
+    meta = "".join('<div class="meta-row"><div class="meta-k">%s</div><div class="meta-v">%s</div></div>' % (h(k), pillify(h(v))) for k, v in META)
+    sint = "".join(f"<li>{h(s)}</li>" for s in SINTESI)
+
+    return f'''<title>Revisione Contratto Long Stay Veliero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@600;700&display=swap">
+<style>
+:root{{
+  --bg:#F5F8FA; --surface:#FFFFFF; --surface-2:#EAF1F7; --ink:#152433; --muted:#5B6B7A; --rule:#D3DDE6;
+  --primary:#1875AB; --navy:#0D5A8A; --gold:#B8860B; --gold-bg:#FFF6D6; --era-bg:#F1F4F7; --new-bg:#F3F8FC; --why-bg:#FFFFFF;
+  --quote:#4A5A68; --clause-bg:#FFFFFF; --clause-rule:#1875AB;
+}}
+@media (prefers-color-scheme: dark){{ :root:not([data-theme="light"]){{
+  --bg:#0F1A24; --surface:#16242F; --surface-2:#1D2E3C; --ink:#E6EDF3; --muted:#9FB0BF; --rule:#2C3F50;
+  --primary:#5AA9DC; --navy:#8CC4EA; --gold:#E4C55A; --gold-bg:#3A3110; --era-bg:#131F29; --new-bg:#15252F; --why-bg:#16242F;
+  --quote:#B7C4D0; --clause-bg:#0F1A24; --clause-rule:#5AA9DC;
+}} }}
+:root[data-theme="dark"]{{
+  --bg:#0F1A24; --surface:#16242F; --surface-2:#1D2E3C; --ink:#E6EDF3; --muted:#9FB0BF; --rule:#2C3F50;
+  --primary:#5AA9DC; --navy:#8CC4EA; --gold:#E4C55A; --gold-bg:#3A3110; --era-bg:#131F29; --new-bg:#15252F; --why-bg:#16242F;
+  --quote:#B7C4D0; --clause-bg:#0F1A24; --clause-rule:#5AA9DC;
+}}
+*{{box-sizing:border-box}}
+body{{margin:0;background:var(--bg);color:var(--ink);font-family:Raleway,"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.55;font-variant-numeric:tabular-nums}}
+a{{color:var(--primary)}}
+a:focus-visible,button:focus-visible{{outline:2px solid var(--primary);outline-offset:2px}}
+.wrap{{max-width:1280px;margin:0 auto;padding:0 24px 64px}}
+.prose{{max-width:72ch}}
+header.hero{{padding:56px 0 28px;border-bottom:1px solid var(--rule)}}
+.eyebrow{{font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);font-weight:700}}
+h1{{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,4vw,44px);line-height:1.1;margin:10px 0 8px;text-wrap:balance;color:var(--navy)}}
+.sub{{font-size:17px;color:var(--muted);margin:0 0 24px}}
+h2{{font-family:"Playfair Display",Georgia,serif;font-size:26px;color:var(--navy);margin:48px 0 14px;text-wrap:balance}}
+.meta{{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;background:var(--surface);max-width:960px}}
+.meta-row{{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule)}}
+.meta-row:first-child{{border-top:0}}
+.meta-k{{font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:12px 14px;background:var(--surface-2);color:var(--navy)}}
+.meta-v{{padding:12px 14px;font-size:14px}}
+ol.sintesi{{padding-left:0;list-style:none;counter-reset:s;max-width:78ch}}
+ol.sintesi li{{counter-increment:s;position:relative;padding:12px 0 12px 56px;border-top:1px solid var(--rule)}}
+ol.sintesi li::before{{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:10px;font-family:"Playfair Display",serif;font-size:26px;color:var(--primary);font-weight:700}}
+.legend{{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:14px 0 8px;font-size:14px;color:var(--muted)}}
+.pill{{display:inline-block;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;font-weight:700;padding:2px 8px;border-radius:999px;vertical-align:middle;margin-left:4px}}
+.pill-legale{{background:var(--surface-2);color:var(--navy);border:1px solid var(--primary)}}
+.pill-prop{{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold)}}
+nav.toc{{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}}
+nav.toc a{{font-size:13px;text-decoration:none;padding:5px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--surface);color:var(--ink)}}
+nav.toc a:hover{{border-color:var(--primary)}}
+.colhead{{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:1fr 1.15fr 1.1fr;gap:0;background:var(--navy);color:#fff;border-radius:6px 6px 0 0;overflow:hidden}}
+.colhead div{{padding:10px 16px;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border-left:1px solid rgba(255,255,255,.18)}}
+.colhead div:first-child{{border-left:0}}
+.row{{border:1px solid var(--rule);border-top:0;background:var(--surface)}}
+.row-title{{margin:0;padding:12px 16px;font-family:"Playfair Display",serif;font-size:18px;color:var(--navy);background:var(--surface-2);border-bottom:1px solid var(--rule)}}
+.cols{{display:grid;grid-template-columns:1fr 1.15fr 1.1fr}}
+.col{{padding:14px 16px 10px;border-left:1px solid var(--rule);font-size:14px;min-width:0}}
+.col:first-child{{border-left:0}}
+.col-era{{background:var(--era-bg)}} .col-new{{background:var(--new-bg)}} .col-why{{background:var(--why-bg)}}
+.col-label{{display:none}}
+.col p{{margin:0 0 10px}}
+.col p.q{{color:var(--quote);font-style:italic}}
+.col p.clause{{background:var(--clause-bg);border-left:3px solid var(--clause-rule);padding:8px 10px;font-style:italic;border-radius:0 4px 4px 0}}
+table.plain{{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--rule);font-size:14px}}
+table.plain th,table.plain td{{padding:10px 12px;border-top:1px solid var(--rule);vertical-align:top;text-align:left}}
+table.plain thead th{{background:var(--navy);color:#fff;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border-top:0}}
+table.plain tbody th{{background:var(--surface-2);color:var(--navy);width:180px;font-weight:600}}
+table.plain tbody th.gold, .dec tbody th{{background:var(--gold-bg);color:var(--gold)}}
+td.score{{font-family:"Playfair Display",serif;font-size:24px;color:var(--navy);text-align:center;width:90px;font-weight:700}}
+.scroll{{overflow-x:auto}}
+ol.legal{{max-width:78ch;padding-left:22px}} ol.legal li{{margin:6px 0}}
+ul.refs{{max-width:100ch;font-size:13px;padding-left:20px}} ul.refs li{{margin:5px 0;overflow-wrap:anywhere}}
+footer{{margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);color:var(--muted);font-size:13px;font-style:italic}}
+@media (max-width:900px){{
+  .colhead{{display:none}} .cols{{grid-template-columns:1fr}} .col{{border-left:0;border-top:1px solid var(--rule)}}
+  .col-label{{display:block;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:6px}}
+  .meta-row{{grid-template-columns:1fr}} table.plain tbody th{{width:auto}}
+}}
+@media (prefers-reduced-motion:no-preference){{ html{{scroll-behavior:smooth}} }}
+</style>
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Residence Veliero &amp; Altamarea · San Mauro Mare</div>
+  <h1>Revisione della bozza di contratto Long Stay</h1>
+  <p class="sub">{h(SOTTOTITOLO)}</p>
+  <div class="meta">{meta}</div>
+</header>
+
+<h2>Sintesi in dieci punti</h2>
+<ol class="sintesi">{sint}</ol>
+
+<h2>Revisione articolo per articolo</h2>
+<div class="prose">
+<p>Tre colonne per ogni articolo: <strong>Com'era</strong> cita la bozza del 31/08 (in corsivo il testo letterale); <strong>Come dovrebbe essere</strong> propone il testo — nei riquadri le clausole pronte da incollare, tra parentesi quadre i dati da inserire; <strong>Perché</strong> motiva ogni cambiamento con la fonte.</p>
+<div class="legend"><span><span class="pill pill-legale">LEGALE</span> da validare con un avvocato del settore ricettivo</span><span><span class="pill pill-prop">PROPRIETÀ</span> decisione dei titolari, non del contratto</span></div>
+</div>
+<nav class="toc">{toc}</nav>
+<div class="colhead"><div>Com'era — bozza del 31/08</div><div>Come dovrebbe essere</div><div>Perché</div></div>
+{"".join(rows_html)}
+
+<h2>La variante aziendale (contratto quadro B2B)</h2>
+<p class="prose">{h(B2B_INTRO)}</p>
+<div class="scroll"><table class="plain"><thead><tr><th>Voce</th><th>Come dovrebbe essere</th><th>Perché</th></tr></thead><tbody>{b2b}</tbody></table></div>
+
+<h2>Decisioni della proprietà prima della firma</h2>
+<div class="scroll"><table class="plain dec"><tbody>{dec}</tbody></table></div>
+
+<h2>Punti da far validare dal legale</h2>
+<ol class="legal">{leg}</ol>
+
+<h2>Valutazione</h2>
+<div class="scroll"><table class="plain"><tbody>{val}</tbody></table></div>
+
+<h2>Riferimenti</h2>
+<ul class="refs">{refs}</ul>
+<footer>Revisione consulenziale a cura di NexaFrontiers, 31/08/2026. Non sostituisce il parere di un avvocato del settore ricettivo.</footer>
+</div>
+'''
+
+# ================================================================== main
+if __name__ == "__main__":
+    md_path = REPO / "docs" / "REVISIONE_CONTRATTO_LONG_STAY_20260831.md"
+    md_path.write_text(build_md(), encoding="utf-8")
+    docx_dl = DOWNLOADS / "Revisione Contratto Long Stay Veliero 31-8-26.docx"
+    docx_repo = REPO / "docs" / "Revisione_Contratto_Long_Stay_Veliero_20260831.docx"
+    build_docx(docx_dl); build_docx(docx_repo)
+    html_path = SCRATCH / "revisione-contratto-veliero.html"
+    html_path.write_text(build_html(), encoding="utf-8")
+    for p in (md_path, docx_dl, docx_repo, html_path):
+        print(f"{p.stat().st_size:>8} B  {p}")
+    # sanity: no residual color-only-in-dark bug check is manual; count rows
+    print("righe tabella:", len(ROWS), "| B2B:", len(B2B), "| decisioni:", len(DECISIONI), "| legale:", len(LEGALE))
