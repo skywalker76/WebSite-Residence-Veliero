@@ -1,0 +1,3656 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residence Veliero & Altamarea | Vacanze al Mare per Famiglie a San Mauro Mare</title>
+    <meta name="description"
+        content="Prenota la vacanza perfetta per la tua famiglia a San Mauro Mare. A 30 metri dal mare, servizi gratuiti per bambini, parcheggio incluso. Miglior prezzo garantito prenotando dal sito.">
+    <meta property="og:title" content="Residence Veliero — La Vacanza Perfetta per la Tua Famiglia">
+    <meta property="og:description"
+        content="A 30m dal mare, tutto incluso per i tuoi bambini. Prenota ora e risparmia.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.residenceveliero.it/landing">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════════════════════════
+   RESIDENCE VELIERO — Landing Page Stylesheet
+   Design System: Brand-accurate + Premium enhancements
+   ══════════════════════════════════════════════════════════════ */
+
+        /* ─── CSS Variables & Design Tokens ─── */
+        :root {
+            /* Brand Colors — extracted from residenceveliero.it */
+            --blue-primary: #1875AB;
+            --blue-secondary: #2684BA;
+            --blue-deep: #0D5A8A;
+            --blue-light: #E5F1F7;
+            --blue-lightest: rgba(229, 241, 247, 0.3);
+            --gold: #F5E082;
+            --gold-warm: #E8C84A;
+            --gold-light: #FFF8DC;
+            --pink-accent: #F98AA5;
+            --green-accent: #3DB39E;
+            --text-dark: #1a2a3a;
+            --text-body: #444444;
+            --text-muted: #7a8a9a;
+            --white: #ffffff;
+            --off-white: #f8fafb;
+            --shadow-sm: 0 2px 8px rgba(24, 117, 171, 0.08);
+            --shadow-md: 0 8px 32px rgba(24, 117, 171, 0.12);
+            --shadow-lg: 0 16px 64px rgba(24, 117, 171, 0.16);
+            --shadow-glow: 0 0 40px rgba(24, 117, 171, 0.3);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            /* Typography */
+            --font-heading: 'Raleway', sans-serif;
+            --font-body: 'Raleway', sans-serif;
+            --font-accent: 'Montserrat', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            /* Transitions */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-fast: 200ms var(--ease-out-quart);
+            --transition-normal: 400ms var(--ease-out-expo);
+            --transition-slow: 800ms var(--ease-out-expo);
+        }
+
+        /* ─── Reset & Base ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 1.7;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─── Section Utilities ─── */
+        .section-eyebrow {
+            display: inline-block;
+            font-family: var(--font-accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue-secondary);
+            margin-bottom: 16px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 28px;
+            height: 2px;
+            background: var(--gold);
+            transform: translateY(-50%);
+        }
+
+        .section-eyebrow--light {
+            color: var(--gold);
+        }
+
+        .section-eyebrow--light::before {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .section-eyebrow--gold {
+            color: var(--gold-warm);
+        }
+
+        .section-eyebrow--gold::before {
+            background: var(--gold-warm);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-weight: 200;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--text-dark);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        .section-title em {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--blue-secondary);
+        }
+
+        .section-title--light {
+            color: var(--white);
+        }
+
+        .section-title--light em {
+            color: var(--gold);
+        }
+
+        /* ─── Buttons ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 16px 36px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--blue-secondary) 0%, var(--blue-deep) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(24, 117, 171, 0.35);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(24, 117, 171, 0.45);
+        }
+
+        .btn--primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn--glow {
+            animation: btnGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes btnGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(24, 117, 171, 0.35);
+            }
+
+            50% {
+                box-shadow: 0 4px 40px rgba(24, 117, 171, 0.55), 0 0 60px rgba(245, 224, 130, 0.15);
+            }
+        }
+
+        .btn--ghost {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn--ghost:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn--secondary {
+            background: transparent;
+            color: var(--blue-secondary);
+            border: 2px solid var(--blue-secondary);
+        }
+
+        .btn--secondary:hover {
+            background: var(--blue-secondary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn--full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn--large {
+            padding: 20px 48px;
+            font-size: 1rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* TOP BAR                                                    */
+        /* ═══════════════════════════════════════════════════════════ */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13, 90, 138, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-bar__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 140px;
+            padding: 10px 24px;
+        }
+
+        .top-bar__logo {
+            height: auto;
+            max-height: 120px;
+            flex-shrink: 0;
+            filter: brightness(1.1);
+            transition: opacity var(--transition-fast);
+        }
+
+        .top-bar__logo:hover {
+            opacity: 0.85;
+        }
+
+        .top-bar__contacts {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .top-bar__item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-accent);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color var(--transition-fast);
+        }
+
+        .top-bar__item:hover {
+            color: var(--gold);
+        }
+
+        .top-bar__item--whatsapp:hover {
+            color: #25D366;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* HERO                                                       */
+        /* ═══════════════════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(180deg,
+                    rgba(13, 90, 138, 0.55) 0%,
+                    rgba(24, 117, 171, 0.4) 40%,
+                    rgba(13, 90, 138, 0.7) 100%),
+                url('https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/home-bambini.jpg') center/cover no-repeat;
+            overflow: hidden;
+            padding-top: 140px;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(245, 224, 130, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(24, 117, 171, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero__particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 24px;
+            max-width: 860px;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(245, 224, 130, 0.15);
+            border: 1px solid rgba(245, 224, 130, 0.35);
+            backdrop-filter: blur(12px);
+            border-radius: 50px;
+            padding: 10px 24px;
+            margin-bottom: 36px;
+            animation: fadeInDown 1s var(--ease-out-expo) 0.2s both;
+        }
+
+        .hero__badge-icon {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .hero__badge span {
+            font-family: var(--font-accent);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 0.05em;
+        }
+
+        .hero__title {
+            font-family: var(--font-heading);
+            font-weight: 100;
+            color: var(--white);
+            margin-bottom: 28px;
+        }
+
+        .hero__title-line {
+            display: block;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            line-height: 1.15;
+            animation: fadeInUp 1s var(--ease-out-expo) 0.4s both;
+        }
+
+        .hero__title-line--accent {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--gold);
+            font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+            animation-delay: 0.3s;
+            text-shadow: 0 2px 40px rgba(245, 224, 130, 0.3);
+        }
+
+        .hero__subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s var(--ease-out-expo) 0.6s both;
+        }
+
+        .hero__subtitle strong {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .hero__subtitle em {
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .hero__ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            animation: fadeInUp 1s var(--ease-out-expo) 0.8s both;
+        }
+
+        .hero__scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: fadeInUp 1s var(--ease-out-expo) 1.2s both;
+        }
+
+        .hero__scroll-indicator span {
+            font-family: var(--font-accent);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero__scroll-mouse {
+            width: 24px;
+            height: 38px;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .hero__scroll-wheel {
+            width: 4px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollWheel {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* USP BAR                                                    */
+        /* ═══════════════════════════════════════════════════════════ */
+        .usp-bar {
+            position: relative;
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .usp-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+        }
+
+        .usp-bar__grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+        }
+
+        .usp-card {
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .usp-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+
+        .usp-card:hover {
+            background: var(--blue-lightest);
+            transform: translateY(-4px);
+        }
+
+        .usp-card__icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--blue-lightest), rgba(245, 224, 130, 0.1));
+            border-radius: 50%;
+            color: var(--blue-secondary);
+            transition: all var(--transition-normal);
+        }
+
+        .usp-card:hover .usp-card__icon {
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(24, 117, 171, 0.25);
+        }
+
+        .usp-card__title {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .usp-card__text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .usp-card__text strong {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* STORY                                                      */
+        /* ═══════════════════════════════════════════════════════════ */
+        .story {
+            padding: 100px 0;
+            background: var(--off-white);
+            overflow: hidden;
+        }
+
+        .story__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .story__image-col {
+            position: relative;
+        }
+
+        .story__image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story__image {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out-expo);
+        }
+
+        .story__image-wrapper:hover .story__image {
+            transform: scale(1.05);
+        }
+
+        .story__image-accent {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--gold), rgba(245, 224, 130, 0.3));
+            border-radius: var(--radius-lg);
+            z-index: -1;
+        }
+
+        .story__badge-float {
+            position: absolute;
+            bottom: -16px;
+            left: -16px;
+            background: var(--blue-primary);
+            color: var(--white);
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .story__badge-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--gold);
+        }
+
+        .story__badge-label {
+            display: block;
+            font-family: var(--font-accent);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        .story__lead {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .story__text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .story__highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .story__highlight {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 20px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .story__highlight:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .story__highlight-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .story__highlight strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .story__highlight span {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* BAMBINI / SERVIZI                                          */
+        /* ═══════════════════════════════════════════════════════════ */
+        .bambini {
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .bambini__bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-primary) 50%, #1a6fa0 100%);
+            z-index: 0;
+        }
+
+        .bambini__bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .bambini__bg::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--white), transparent);
+        }
+
+        .bambini>.container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .bambini__header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .bambini__intro {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .bambini__intro strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .bambini__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            padding: 36px 28px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(245, 224, 130, 0.3);
+        }
+
+        .service-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            line-height: 1;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        .service-card__title {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .service-card__text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* APPARTAMENTI                                               */
+        /* ═══════════════════════════════════════════════════════════ */
+        .appartamenti {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .appartamenti>.container>.section-eyebrow,
+        .appartamenti>.container>.section-title {
+            text-align: center;
+        }
+
+        .appartamenti__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .apt-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(24, 117, 171, 0.06);
+        }
+
+        .apt-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+        }
+
+        .apt-card__image-wrap {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .apt-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+
+        .apt-card:hover .apt-card__image {
+            transform: scale(1.08);
+        }
+
+        .apt-card__overlay {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+
+        .apt-card__tag {
+            display: inline-block;
+            background: var(--blue-secondary);
+            color: var(--white);
+            font-family: var(--font-accent);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        .apt-card__tag--gold {
+            background: linear-gradient(135deg, var(--gold-warm), var(--gold));
+            color: var(--text-dark);
+        }
+
+        .apt-card__body {
+            padding: 32px;
+        }
+
+        .apt-card__title {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .apt-card__desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .apt-card__features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .apt-card__features li {
+            font-family: var(--font-accent);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* TESTIMONIALS                                               */
+        /* ═══════════════════════════════════════════════════════════ */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--off-white);
+            overflow: hidden;
+        }
+
+        .testimonials>.container>.section-eyebrow,
+        .testimonials>.container>.section-title {
+            text-align: center;
+        }
+
+        .testimonials__track {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 20px 0 40px;
+            margin-top: 32px;
+        }
+
+        .testimonials__track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 340px;
+            scroll-snap-align: center;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(24, 117, 171, 0.06);
+            transition: all var(--transition-normal);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card__stars {
+            color: var(--gold-warm);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card__quote {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--blue-lightest);
+        }
+
+        .testimonial-card__author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card__avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .testimonial-card__author strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .testimonial-card__author span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .testimonials__nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .testimonials__btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--blue-secondary);
+            background: transparent;
+            color: var(--blue-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .testimonials__btn:hover {
+            background: var(--blue-secondary);
+            color: var(--white);
+        }
+
+        .testimonials__dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .testimonials__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(24, 117, 171, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .testimonials__dot.active {
+            background: var(--blue-secondary);
+            width: 28px;
+            border-radius: 5px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* OFFERTE                                                    */
+        /* ═══════════════════════════════════════════════════════════ */
+        .offerte {
+            padding: 100px 0;
+            background:
+                linear-gradient(135deg, #fdfbf3 0%, var(--off-white) 100%);
+            overflow: hidden;
+        }
+
+        .offerte__inner {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .offerte__title {
+            font-family: var(--font-heading);
+            font-weight: 200;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .offerte__text {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .offerte__text strong {
+            color: var(--text-dark);
+        }
+
+        .offerte__benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .offerte__benefit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-accent);
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .offerte__check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-accent), #2ea08a);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .countdown {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            border: 1px solid rgba(245, 224, 130, 0.3);
+        }
+
+        .countdown__label {
+            font-family: var(--font-accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .countdown__grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .countdown__block {
+            text-align: center;
+        }
+
+        .countdown__number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--blue-primary);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .countdown__unit {
+            display: block;
+            font-family: var(--font-accent);
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .countdown__separator {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold-warm);
+            padding-bottom: 18px;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* PREVENTIVO FORM                                            */
+        /* ═══════════════════════════════════════════════════════════ */
+        .preventivo {
+            padding: 100px 0;
+            background:
+                linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preventivo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 224, 130, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .preventivo__grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        .preventivo__desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .preventivo__trust {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .preventivo__trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .preventivo__trust-item svg {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* Form */
+        .form {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+        }
+
+        .form__row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form__group {
+            margin-bottom: 4px;
+        }
+
+        .form__label {
+            display: block;
+            font-family: var(--font-accent);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .form__input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8ecf0;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: all var(--transition-fast);
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form__input:focus {
+            border-color: var(--blue-secondary);
+            box-shadow: 0 0 0 4px rgba(38, 132, 186, 0.1);
+        }
+
+        .form__input--textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form__privacy {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .form__privacy input[type="checkbox"] {
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--blue-secondary);
+        }
+
+        .form__privacy a {
+            color: var(--blue-secondary);
+            text-decoration: underline;
+        }
+
+        /* Form Success State */
+        .form--success {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .form__success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--green-accent), #2ea08a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: successPop 0.6s var(--ease-out-expo);
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .form__success-title {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .form__success-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* LOCATION                                                   */
+        /* ═══════════════════════════════════════════════════════════ */
+        .location {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .location>.container>.section-eyebrow,
+        .location>.container>.section-title {
+            text-align: center;
+        }
+
+        .location__grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            gap: 40px;
+            margin-top: 48px;
+            align-items: stretch;
+        }
+
+        .location__map {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            min-height: 380px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .location__map iframe {
+            display: block;
+        }
+
+        .location__card {
+            background: var(--off-white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location__card h3 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .location__card address {
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .location__contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location__contact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-accent);
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        .location__contact:hover {
+            background: var(--blue-lightest);
+            color: var(--blue-secondary);
+            transform: translateX(4px);
+        }
+
+        .location__contact svg {
+            color: var(--blue-secondary);
+            flex-shrink: 0;
+        }
+
+        .location__contact--wa:hover {
+            color: #25D366;
+        }
+
+        .location__contact--wa:hover svg {
+            color: #25D366;
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* TERRITORIO & DINTORNI                                      */
+        /* ═══════════════════════════════════════════════════════════ */
+        .territorio {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+        }
+
+        .territorio > .container > .section-eyebrow,
+        .territorio > .container > .section-title {
+            text-align: center;
+        }
+
+        .territorio__intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            font-size: 1.05rem;
+            color: var(--text-body);
+            line-height: 1.8;
+        }
+
+        .territorio__categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .territorio__category {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(24, 117, 171, 0.06);
+        }
+
+        .territorio__category:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .territorio__cat-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .territorio__cat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .territorio__cat-icon--cultura {
+            background: rgba(24, 117, 171, 0.1);
+        }
+
+        .territorio__cat-icon--shopping {
+            background: rgba(249, 138, 165, 0.12);
+        }
+
+        .territorio__cat-icon--mobilita {
+            background: rgba(61, 179, 158, 0.12);
+        }
+
+        .territorio__cat-icon--gusto {
+            background: rgba(245, 224, 130, 0.25);
+        }
+
+        .territorio__cat-title {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .territorio__list {
+            list-style: none;
+        }
+
+        .territorio__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            gap: 12px;
+        }
+
+        .territorio__item:last-child {
+            border-bottom: none;
+        }
+
+        .territorio__place {
+            font-family: var(--font-accent);
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+        }
+
+        .territorio__detail {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .territorio__time {
+            font-family: var(--font-accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--blue-secondary);
+            white-space: nowrap;
+            background: var(--blue-lightest);
+            padding: 4px 12px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+
+        .territorio__quote {
+            text-align: center;
+            margin-top: 48px;
+            padding: 32px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-deep));
+            border-radius: var(--radius-lg);
+            color: var(--white);
+        }
+
+        .territorio__quote p {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.8;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .territorio__categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* FOOTER                                                     */
+        /* ═══════════════════════════════════════════════════════════ */
+        .footer {
+            background: var(--text-dark);
+            padding: 48px 0 24px;
+        }
+
+        .footer__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer__logo {
+            height: 40px;
+            margin-bottom: 8px;
+            filter: brightness(1.2);
+        }
+
+        .footer__tagline {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer__links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer__links a {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color var(--transition-fast);
+        }
+
+        .footer__links a:hover {
+            color: var(--gold);
+        }
+
+        .footer__bottom {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer__bottom p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* FLOATING WHATSAPP BUTTON                                   */
+        /* ═══════════════════════════════════════════════════════════ */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all var(--transition-normal);
+        }
+
+        .fab-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
+        }
+
+        .fab-whatsapp__pulse {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(37, 211, 102, 0.4);
+            animation: waPulse 2s ease-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes waPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* REVEAL ANIMATIONS                                          */
+        /* ═══════════════════════════════════════════════════════════ */
+        .reveal-left,
+        .reveal-right,
+        .reveal-up {
+            opacity: 0;
+            transition: all 1s var(--ease-out-expo);
+        }
+
+        .reveal-left {
+            transform: translateX(-60px);
+        }
+
+        .reveal-right {
+            transform: translateX(60px);
+        }
+
+        .reveal-up {
+            transform: translateY(40px);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .reveal-left.visible,
+        .reveal-right.visible,
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* ─── Keyframes ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* RESPONSIVE                                                 */
+        /* ═══════════════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .usp-bar__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .story__grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story__image {
+                height: 360px;
+            }
+
+            .bambini__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .offerte__inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .preventivo__grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .location__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar__inner {
+                gap: 12px;
+            }
+
+            .top-bar__item--email {
+                display: none;
+            }
+
+            .hero__content {
+                padding: 40px 16px;
+            }
+
+            .hero__ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .usp-bar__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .usp-card {
+                padding: 24px 16px;
+            }
+
+            .bambini__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .appartamenti__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                flex: 0 0 300px;
+            }
+
+            .offerte__benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .form__row {
+                grid-template-columns: 1fr;
+            }
+
+            .form {
+                padding: 28px 20px;
+            }
+
+            .footer__inner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .countdown__number {
+                font-size: 2rem;
+            }
+
+            .story__badge-float {
+                position: static;
+                display: inline-block;
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .usp-bar__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero__title-line {
+                font-size: 1.8rem;
+            }
+
+            .hero__title-line--accent {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 0.85rem;
+            }
+
+            .top-bar__inner {
+                font-size: 0.7rem;
+            }
+
+            .top-bar__logo {
+                max-height: 80px;
+            }
+
+            .top-bar__inner {
+                height: 100px;
+            }
+
+            .apt-card__features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* CHATBOT WIDGET                                              */
+        /* ═══════════════════════════════════════════════════════════ */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 90px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(24, 117, 171, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(24, 117, 171, 0.5);
+        }
+
+        .chatbot-toggle .chat-icon {
+            display: block;
+        }
+
+        .chatbot-toggle .close-icon {
+            display: none;
+        }
+
+        .chatbot-toggle.active .chat-icon {
+            display: none;
+        }
+
+        .chatbot-toggle.active .close-icon {
+            display: block;
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 380px;
+            max-height: 520px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: chatSlideUp 0.3s ease;
+        }
+
+        .chatbot.open {
+            display: flex;
+        }
+
+        @keyframes chatSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot__header {
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chatbot__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .chatbot__header-info h4 {
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .chatbot__header-info span {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.72rem;
+            font-family: var(--font-accent);
+        }
+
+        .chatbot__status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ADE80;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot__messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 320px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            font-family: var(--font-body);
+            animation: msgFade 0.3s ease;
+        }
+
+        @keyframes msgFade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-msg--bot {
+            background: #eef4f9;
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-msg--user {
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-msg a {
+            color: var(--blue-secondary);
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .chat-msg--user a {
+            color: var(--gold);
+        }
+
+        .chat-typing {
+            display: flex;
+            gap: 4px;
+            padding: 10px 14px;
+            align-self: flex-start;
+        }
+
+        .chat-typing span {
+            width: 8px;
+            height: 8px;
+            background: #b0c4d8;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .chat-typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chat-typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .chat-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 8px 16px 12px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .chat-quick-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--blue-secondary);
+            background: white;
+            color: var(--blue-secondary);
+            font-family: var(--font-accent);
+            font-size: 0.72rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-quick-btn:hover {
+            background: var(--blue-secondary);
+            color: white;
+        }
+
+        .chatbot__input {
+            display: flex;
+            padding: 12px 16px;
+            gap: 8px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fafbfc;
+        }
+
+        .chatbot__input input {
+            flex: 1;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 10px 16px;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chatbot__input input:focus {
+            border-color: var(--blue-secondary);
+        }
+
+        .chatbot__input button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--blue-secondary), var(--blue-deep));
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .chatbot__input button:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 480px) {
+            .chatbot {
+                width: calc(100vw - 16px);
+                right: 8px;
+                bottom: 90px;
+                max-height: 70vh;
+            }
+
+            .chatbot-toggle {
+                right: 76px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- TOP BAR — Sticky contact strip -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="top-bar">
+        <div class="top-bar__inner">
+            <a href="https://www.residenceveliero.it" target="_blank" rel="noopener">
+                <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/header/logo.png"
+                    alt="Residence Veliero" class="top-bar__logo">
+            </a>
+            <div class="top-bar__contacts">
+                <a href="tel:+390541346330" class="top-bar__item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                    </svg>
+                    0541.346330
+                </a>
+                <a href="https://wa.me/393668909383" class="top-bar__item top-bar__item--whatsapp" target="_blank"
+                    rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="mailto:info@residenceveliero.it" class="top-bar__item top-bar__item--email">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="M22 7l-10 7L2 7" />
+                    </svg>
+                    info@residenceveliero.it
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- HERO SECTION — Emotional fullscreen with parallax -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero__overlay"></div>
+        <div class="hero__particles" id="particles"></div>
+        <div class="hero__content">
+            <div class="hero__badge">
+                <span class="hero__badge-icon">★</span>
+                <span>Miglior Prezzo Garantito — Solo dal Sito Ufficiale</span>
+            </div>
+            <h1 class="hero__title">
+                <span class="hero__title-line hero__title-line--accent">La vacanza perfetta</span>
+                <span class="hero__title-line">per la tua famiglia</span>
+            </h1>
+            <p class="hero__subtitle">
+                A <strong>30 metri dal mare</strong> nella zona pedonale di San Mauro Mare.<br>
+                Tutto ciò che serve per i tuoi bambini, <em>gratuitamente</em>.
+            </p>
+            <div class="hero__ctas">
+                <a href="#preventivo" class="btn btn--primary btn--glow">
+                    Richiedi il Tuo Preventivo Gratuito
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#appartamenti" class="btn btn--ghost">
+                    Scopri gli Appartamenti
+                </a>
+            </div>
+            <div class="hero__scroll-indicator">
+                <div class="hero__scroll-mouse">
+                    <div class="hero__scroll-wheel"></div>
+                </div>
+                <span>Scorri per scoprire</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- USP BAR — 6 Pillars with official icons -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="usp-bar" id="vantaggi">
+        <div class="container">
+            <div class="usp-bar__grid">
+                <div class="usp-card" data-delay="0">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/ombrellone.png"
+                            alt="30 Metri dalla Spiaggia" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">30m dalla Spiaggia</h3>
+                    <p class="usp-card__text">Zona pedonale, <strong>basta attraversare la strada</strong></p>
+                </div>
+                <div class="usp-card" data-delay="100">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/condizionatore.png"
+                            alt="Completamente Climatizzato" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">Climatizzato</h3>
+                    <p class="usp-card__text">Appartamenti <strong>completamente climatizzati</strong></p>
+                </div>
+                <div class="usp-card" data-delay="200">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/parcheggio.png"
+                            alt="Posto Auto Gratis" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">Parcheggio Gratis</h3>
+                    <p class="usp-card__text"><strong>Posto auto gratuito</strong> per ogni appartamento</p>
+                </div>
+                <div class="usp-card" data-delay="300">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/electric-car.png"
+                            alt="Ricarica Auto Elettriche" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">Ricarica EV</h3>
+                    <p class="usp-card__text">Stazione di <strong>ricarica auto elettriche</strong></p>
+                </div>
+                <div class="usp-card" data-delay="400">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/giochi-bimbi.png"
+                            alt="Spazio Giochi Bimbi" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">Giochi Bimbi</h3>
+                    <p class="usp-card__text"><strong>Spazio giochi</strong> dedicato ai più piccoli</p>
+                </div>
+                <div class="usp-card" data-delay="500">
+                    <div class="usp-card__icon">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/wireless.png"
+                            alt="Wi-Fi Gratuito" width="60" height="60">
+                    </div>
+                    <h3 class="usp-card__title">Wi-Fi Gratuito</h3>
+                    <p class="usp-card__text"><strong>Wireless gratuito</strong> in tutto il residence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- STORY SECTION — Chi siamo con immersive layout -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="story" id="chi-siamo">
+        <div class="container">
+            <div class="story__grid">
+                <div class="story__image-col reveal-left">
+                    <div class="story__image-wrapper">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/home-bambini.jpg"
+                            alt="Famiglie felici al Residence Veliero" class="story__image" loading="lazy">
+                        <div class="story__image-accent"></div>
+                    </div>
+                    <div class="story__badge-float">
+                        <span class="story__badge-number">20+</span>
+                        <span class="story__badge-label">Anni di<br>Esperienza</span>
+                    </div>
+                </div>
+                <div class="story__text-col reveal-right">
+                    <span class="section-eyebrow">Chi Siamo</span>
+                    <h2 class="section-title">Non un semplice residence.<br><em>La vostra seconda casa al mare.</em>
+                    </h2>
+                    <p class="story__lead">Siamo <strong>Paolo e Marco Masini</strong>. Da oltre vent'anni accogliamo
+                        famiglie che cercano una vacanza senza stress, dove ogni dettaglio è pensato per far sentire
+                        grandi e piccini come a casa.</p>
+                    <p class="story__text">Il <strong>Residence Veliero</strong> e il <strong>Residence
+                            Altamarea</strong> si trovano nel cuore dell'isola pedonale di San Mauro Mare, a pochi passi
+                        dalla spiaggia. Qui non servono auto, non servono preoccupazioni.</p>
+                    <div class="story__highlights">
+                        <div class="story__highlight">
+                            <div class="story__highlight-icon">🏖️</div>
+                            <div>
+                                <strong>Posizione perfetta</strong>
+                                <span>Zona pedonale, 30m dal mare</span>
+                            </div>
+                        </div>
+                        <div class="story__highlight">
+                            <div class="story__highlight-icon">👨‍👩‍👧‍👦</div>
+                            <div>
+                                <strong>Gestione familiare</strong>
+                                <span>Paolo, Marco, Roberta e Simona</span>
+                            </div>
+                        </div>
+                        <div class="story__highlight">
+                            <div class="story__highlight-icon">🌊</div>
+                            <div>
+                                <strong>Vista mare disponibile</strong>
+                                <span>Residence Altamarea con vista</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SERVIZI BAMBINI — Full-width immersive section -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="bambini" id="bambini">
+        <div class="bambini__bg"></div>
+        <div class="container">
+            <div class="bambini__header">
+                <span class="section-eyebrow section-eyebrow--light">Il Nostro Punto di Forza</span>
+                <h2 class="section-title section-title--light">Parti leggero.<br><em>Ci pensiamo noi a tutto.</em></h2>
+                <p class="bambini__intro">Finalmente una vacanza dove non devi caricare la macchina fino al tetto. Dicci
+                    cosa ti serve e lo troverai già nel tuo appartamento — <strong>gratuitamente</strong>.</p>
+            </div>
+            <div class="bambini__grid">
+                <div class="service-card" data-delay="0">
+                    <div class="service-card__icon">🍼</div>
+                    <h4 class="service-card__title">Kit Pappa Completo</h4>
+                    <p class="service-card__text">Scalda-biberon, sterilizzatore, piattini e posate per i più piccoli
+                    </p>
+                </div>
+                <div class="service-card" data-delay="100">
+                    <div class="service-card__icon">🛏️</div>
+                    <h4 class="service-card__title">Lettino e Fasciatoio</h4>
+                    <p class="service-card__text">Tutto pronto in camera per la nanna dei bimbi, dalla culla al lettino
+                    </p>
+                </div>
+                <div class="service-card" data-delay="200">
+                    <div class="service-card__icon">🚼</div>
+                    <h4 class="service-card__title">Passeggino</h4>
+                    <p class="service-card__text">Passeggino a disposizione per le passeggiate lungo la passeggiata a
+                        mare</p>
+                </div>
+                <div class="service-card" data-delay="300">
+                    <div class="service-card__icon">🎭</div>
+                    <h4 class="service-card__title">Animazione</h4>
+                    <p class="service-card__text">Intrattenimento in spiaggia e serale nel paese per grandi e piccini
+                    </p>
+                </div>
+                <div class="service-card" data-delay="400">
+                    <div class="service-card__icon">🚲</div>
+                    <h4 class="service-card__title">Biciclette Gratuite</h4>
+                    <p class="service-card__text">Pedalate in famiglia lungo la costa, bici a disposizione per tutti</p>
+                </div>
+                <div class="service-card" data-delay="500">
+                    <div class="service-card__icon">🍕</div>
+                    <h4 class="service-card__title">Cibo a Domicilio</h4>
+                    <p class="service-card__text">Ordina pranzo o cena, consegnati direttamente nel tuo appartamento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- APPARTAMENTI — Gallery cards with hover -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="appartamenti" id="appartamenti">
+        <div class="container">
+            <span class="section-eyebrow">I Nostri Appartamenti</span>
+            <h2 class="section-title">Due residence, un'unica qualità.<br><em>Scegli il tuo stile di vacanza.</em></h2>
+            <div class="appartamenti__grid">
+                <div class="apt-card reveal-up">
+                    <div class="apt-card__image-wrap">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/home-bambini.jpg"
+                            alt="Residence Veliero — Appartamenti" class="apt-card__image" loading="lazy">
+                        <div class="apt-card__overlay">
+                            <span class="apt-card__tag">Più Richiesto</span>
+                        </div>
+                    </div>
+                    <div class="apt-card__body">
+                        <h3 class="apt-card__title">Residence Veliero</h3>
+                        <p class="apt-card__desc">Appartamenti moderni nel cuore della zona pedonale. Design essenziale,
+                            comfort totale, a due passi dal mare.</p>
+                        <ul class="apt-card__features">
+                            <li>✓ Aria condizionata</li>
+                            <li>✓ Angolo cottura attrezzato</li>
+                            <li>✓ Wi-Fi gratuito</li>
+                            <li>✓ TV LCD</li>
+                        </ul>
+                        <a href="#preventivo" class="btn btn--secondary">Richiedi Disponibilità</a>
+                    </div>
+                </div>
+                <div class="apt-card reveal-up" style="--reveal-delay: 200ms">
+                    <div class="apt-card__image-wrap">
+                        <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/home/home-cibo-relax.jpg"
+                            alt="Residence Altamarea — Vista Mare" class="apt-card__image" loading="lazy">
+                        <div class="apt-card__overlay">
+                            <span class="apt-card__tag apt-card__tag--gold">Vista Mare</span>
+                        </div>
+                    </div>
+                    <div class="apt-card__body">
+                        <h3 class="apt-card__title">Residence Altamarea</h3>
+                        <p class="apt-card__desc">Proprio accanto al Veliero, con lo stesso standard di qualità e un
+                            bonus esclusivo: la <strong>vista mare</strong>.</p>
+                        <ul class="apt-card__features">
+                            <li>✓ Vista mare panoramica</li>
+                            <li>✓ Terrazzo privato</li>
+                            <li>✓ Angolo cottura completo</li>
+                            <li>✓ Aria condizionata</li>
+                        </ul>
+                        <a href="#preventivo" class="btn btn--secondary">Richiedi Disponibilità</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- TESTIMONIALS — Social proof carousel -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="testimonials" id="recensioni">
+        <div class="container">
+            <span class="section-eyebrow">Dicono di Noi</span>
+            <h2 class="section-title">Non crederci sulla parola.<br><em>Ascolta chi c'è già stato.</em></h2>
+            <div class="testimonials__track" id="testimonialTrack">
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">"Davvero eccellente. La struttura è nuova, ben tenuta e
+                        molto pulita, vicinissima alla spiaggia. Particolare attenzione verso le esigenze dei più
+                        piccoli — viene fornito gratuitamente tutto l'occorrente per i bambini."</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">A</div>
+                        <div>
+                            <strong>Antobott</strong>
+                            <span>Provincia di Arezzo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">"Mi sono innamorata di quel posto! Bellissimo e
+                        pulitissimo residence vicinissimo al mare. I titolari sono persone splendide, ospitali e sempre
+                        disponibili. Ho già prenotato per l'anno prossimo!"</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">V</div>
+                        <div>
+                            <strong>Viviana</strong>
+                            <span>Provincia di Milano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">"A due passi dal mare, zona traffico limitato, pulizia
+                        ottima, personale cortese e disponibile. Biciclette messe a disposizione dal residence. Da
+                        consigliare per vacanza con bambini!"</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">M</div>
+                        <div>
+                            <strong>Marco</strong>
+                            <span>36-40 Anni</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">"Abbiamo trovato un'ottima accoglienza e un appartamento
+                        molto pulito e confortevole. Marco e Paolo ci hanno coccolato per due settimane. Per la prima
+                        volta abbiamo prenotato per l'anno successivo!"</blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar">I</div>
+                        <div>
+                            <strong>Irene B.</strong>
+                            <span>Ivrea, Piemonte</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials__nav">
+                <button class="testimonials__btn testimonials__btn--prev" id="prevBtn" aria-label="Precedente">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <div class="testimonials__dots" id="testimonialDots"></div>
+                <button class="testimonials__btn testimonials__btn--next" id="nextBtn" aria-label="Successivo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- OFFERTE — Urgency section with countdown -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="offerte" id="offerte">
+        <div class="container">
+            <div class="offerte__inner">
+                <div class="offerte__content reveal-left">
+                    <span class="section-eyebrow section-eyebrow--gold">Offerta Limitata</span>
+                    <h2 class="offerte__title">Estate 2026 — Prenota Prima e Risparmia</h2>
+                    <p class="offerte__text">Prenota il tuo soggiorno entro il <strong>30 Aprile</strong> e ottieni
+                        condizioni esclusive riservate solo a chi prenota dal sito ufficiale.</p>
+                    <div class="offerte__benefits">
+                        <div class="offerte__benefit">
+                            <span class="offerte__check">✓</span>
+                            <span>Miglior prezzo garantito</span>
+                        </div>
+                        <div class="offerte__benefit">
+                            <span class="offerte__check">✓</span>
+                            <span>Parcheggio gratuito incluso</span>
+                        </div>
+                        <div class="offerte__benefit">
+                            <span class="offerte__check">✓</span>
+                            <span>Cancellazione flessibile</span>
+                        </div>
+                        <div class="offerte__benefit">
+                            <span class="offerte__check">✓</span>
+                            <span>Assicurazione vacanza inclusa</span>
+                        </div>
+                    </div>
+                    <a href="#preventivo" class="btn btn--primary btn--glow btn--large">
+                        Approfitta dell'Offerta
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="offerte__countdown-col reveal-right">
+                    <div class="countdown">
+                        <div class="countdown__label">L'offerta scade tra:</div>
+                        <div class="countdown__grid" id="countdown">
+                            <div class="countdown__block">
+                                <span class="countdown__number" id="countdownDays">00</span>
+                                <span class="countdown__unit">Giorni</span>
+                            </div>
+                            <div class="countdown__separator">:</div>
+                            <div class="countdown__block">
+                                <span class="countdown__number" id="countdownHours">00</span>
+                                <span class="countdown__unit">Ore</span>
+                            </div>
+                            <div class="countdown__separator">:</div>
+                            <div class="countdown__block">
+                                <span class="countdown__number" id="countdownMinutes">00</span>
+                                <span class="countdown__unit">Minuti</span>
+                            </div>
+                            <div class="countdown__separator">:</div>
+                            <div class="countdown__block">
+                                <span class="countdown__number" id="countdownSeconds">00</span>
+                                <span class="countdown__unit">Secondi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FORM — Preventivo guidato -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="preventivo" id="preventivo">
+        <div class="container">
+            <div class="preventivo__grid">
+                <div class="preventivo__info reveal-left">
+                    <span class="section-eyebrow section-eyebrow--light">Rispondiamo in 24h</span>
+                    <h2 class="section-title section-title--light">Richiedi il tuo<br><em>preventivo
+                            personalizzato.</em></h2>
+                    <p class="preventivo__desc">Compila il modulo e riceverai un preventivo su misura per la tua
+                        famiglia. Nessun impegno, nessun costo — solo la nostra migliore offerta.</p>
+                    <div class="preventivo__trust">
+                        <div class="preventivo__trust-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            <span>Dati protetti e sicuri</span>
+                        </div>
+                        <div class="preventivo__trust-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                            <span>Risposta entro 24 ore</span>
+                        </div>
+                        <div class="preventivo__trust-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <span>Nessun impegno richiesto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preventivo__form-col reveal-right">
+                    <form class="form" id="quoteForm" novalidate>
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="nome">Nome *</label>
+                                <input type="text" id="nome" name="nome" class="form__input" placeholder="Il tuo nome"
+                                    required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="cognome">Cognome *</label>
+                                <input type="text" id="cognome" name="cognome" class="form__input"
+                                    placeholder="Il tuo cognome" required>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="email">Email *</label>
+                                <input type="email" id="email" name="email" class="form__input"
+                                    placeholder="tuaemail@esempio.it" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="telefono">Telefono</label>
+                                <input type="tel" id="telefono" name="telefono" class="form__input"
+                                    placeholder="+39 ...">
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="checkin">Check-in *</label>
+                                <input type="date" id="checkin" name="checkin" class="form__input" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="checkout">Check-out *</label>
+                                <input type="date" id="checkout" name="checkout" class="form__input" required>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label class="form__label" for="adulti">Adulti *</label>
+                                <select id="adulti" name="adulti" class="form__input" required>
+                                    <option value="">Seleziona</option>
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5+">5+</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="bambini-num">Bambini (0-12)</label>
+                                <select id="bambini-num" name="bambini" class="form__input">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4+">4+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label" for="residence">Residence Preferito</label>
+                            <select id="residence" name="residence" class="form__input">
+                                <option value="">Nessuna preferenza</option>
+                                <option value="veliero">Residence Veliero</option>
+                                <option value="altamarea">Residence Altamarea (Vista Mare)</option>
+                            </select>
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label" for="messaggio">Note o richieste particolari</label>
+                            <textarea id="messaggio" name="messaggio" class="form__input form__input--textarea" rows="3"
+                                placeholder="Es: Abbiamo bisogno di un lettino per neonato..."></textarea>
+                        </div>
+                        <div class="form__privacy">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">Acconsento al trattamento dei dati personali secondo la <a
+                                    href="https://www.residenceveliero.it/popup/privacy_privacyit.html" target="_blank"
+                                    rel="noopener">Privacy Policy</a></label>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full btn--glow">
+                            Invia Richiesta Preventivo
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- TERRITORIO & DINTORNI -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="territorio" id="territorio">
+        <div class="container">
+            <span class="section-eyebrow">Il Territorio</span>
+            <h2 class="section-title">Nel cuore della Romagna.<br><em>Tutto a portata di mano.</em></h2>
+            <p class="territorio__intro">
+                San Mauro Mare non è solo mare e relax. È il punto strategico da cui raggiungi 
+                borghi medievali, siti UNESCO, centri commerciali e le migliori trattorie della Romagna 
+                — tutto in pochi minuti d'auto.
+            </p>
+
+            <div class="territorio__categories">
+
+                <!-- CULTURA & STORIA -->
+                <div class="territorio__category">
+                    <div class="territorio__cat-header">
+                        <div class="territorio__cat-icon territorio__cat-icon--cultura">🏛️</div>
+                        <h3 class="territorio__cat-title">Cultura & Storia</h3>
+                    </div>
+                    <ul class="territorio__list">
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Santarcangelo di Romagna</span>
+                                <div class="territorio__detail">Borgo medievale, grotte tufacee, festival del teatro</div>
+                            </div>
+                            <span class="territorio__time">10 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Rimini</span>
+                                <div class="territorio__detail">Arco d'Augusto, Ponte di Tiberio, Cinema Fulgor di Fellini</div>
+                            </div>
+                            <span class="territorio__time">20 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Cesena</span>
+                                <div class="territorio__detail">Biblioteca Malatestiana UNESCO, Rocca, centro storico</div>
+                            </div>
+                            <span class="territorio__time">20 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Cattolica</span>
+                                <div class="territorio__detail">Acquario, Museo della Regina, lungomare pedonale</div>
+                            </div>
+                            <span class="territorio__time">25 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Ravenna</span>
+                                <div class="territorio__detail">Capitale dei mosaici bizantini, 8 siti UNESCO, Tomba di Dante</div>
+                            </div>
+                            <span class="territorio__time">35 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">San Leo</span>
+                                <div class="territorio__detail">Fortezza su sperone di roccia — "la più bella d'Italia"</div>
+                            </div>
+                            <span class="territorio__time">40 min</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- SHOPPING & SERVIZI -->
+                <div class="territorio__category">
+                    <div class="territorio__cat-header">
+                        <div class="territorio__cat-icon territorio__cat-icon--shopping">🛒</div>
+                        <h3 class="territorio__cat-title">Shopping & Servizi</h3>
+                    </div>
+                    <ul class="territorio__list">
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Centro commerciale locale</span>
+                                <div class="territorio__detail">Supermercato e servizi base, raggiungibile in bici</div>
+                            </div>
+                            <span class="territorio__time">5 min 🚶</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Iper Romagna Center</span>
+                                <div class="territorio__detail">Savignano — ipermercato, negozi, ristorazione, cinema</div>
+                            </div>
+                            <span class="territorio__time">10 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Le Befane Shopping Centre</span>
+                                <div class="territorio__detail">Rimini — 130+ negozi, IKEA, Mediaworld, multisala</div>
+                            </div>
+                            <span class="territorio__time">20 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Rimini Fiera</span>
+                                <div class="territorio__detail">Fiere internazionali: TTG, Ecomondo, SIG Europe</div>
+                            </div>
+                            <span class="territorio__time">15 min</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- MOBILITÀ & CONNESSIONI -->
+                <div class="territorio__category">
+                    <div class="territorio__cat-header">
+                        <div class="territorio__cat-icon territorio__cat-icon--mobilita">🚗</div>
+                        <h3 class="territorio__cat-title">Mobilità & Connessioni</h3>
+                    </div>
+                    <ul class="territorio__list">
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Superstrada E45</span>
+                                <div class="territorio__detail">Collegamento nord-sud: Cesena, Perugia, Roma</div>
+                            </div>
+                            <span class="territorio__time">5 km</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Autostrada A14 — Rimini Nord</span>
+                                <div class="territorio__detail">Bologna 55', Milano 2h30, Firenze 1h30</div>
+                            </div>
+                            <span class="territorio__time">10 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Stazione FS Rimini</span>
+                                <div class="territorio__detail">Freccia per Bologna 1h, Milano 2h30, Roma 3h30</div>
+                            </div>
+                            <span class="territorio__time">20 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Aeroporto Bologna Marconi</span>
+                                <div class="territorio__detail">Hub internazionale, voli in tutta Europa</div>
+                            </div>
+                            <span class="territorio__time">1 ora</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ENOGASTRONOMIA & LIFESTYLE -->
+                <div class="territorio__category">
+                    <div class="territorio__cat-header">
+                        <div class="territorio__cat-icon territorio__cat-icon--gusto">🍽️</div>
+                        <h3 class="territorio__cat-title">Sapori & Lifestyle</h3>
+                    </div>
+                    <ul class="territorio__list">
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Piadina romagnola</span>
+                                <div class="territorio__detail">Chioschi e botteghe ovunque, anche a San Mauro</div>
+                            </div>
+                            <span class="territorio__time">5 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Mercato del pesce — Cesenatico</span>
+                                <div class="territorio__detail">Pesce fresco dell'Adriatico, porto canale leonardesco</div>
+                            </div>
+                            <span class="territorio__time">15 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Cantine di Bertinoro e Predappio</span>
+                                <div class="territorio__detail">Sangiovese, degustazioni nelle colline romagnole</div>
+                            </div>
+                            <span class="territorio__time">30 min</span>
+                        </li>
+                        <li class="territorio__item">
+                            <div>
+                                <span class="territorio__place">Terme e Wellness</span>
+                                <div class="territorio__detail">Riccione e Rimini Terme — relax dopo una giornata di mare</div>
+                            </div>
+                            <span class="territorio__time">25 min</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Citazione finale -->
+            <div class="territorio__quote">
+                <p>
+                    "A San Mauro Mare ti svegli con il suono del mare, pranzi in spiaggia, 
+                    e nel weekend puoi visitare Ravenna con i suoi mosaici UNESCO, 
+                    passeggiare per il borgo medievale di Santarcangelo, 
+                    o fare shopping alle Befane con 130 negozi — 
+                    tutto in 20-40 minuti. La Romagna non è solo vacanza. 
+                    È qualità della vita."
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- MAPPA + CONTATTI -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section class="location" id="dove-siamo">
+        <div class="container">
+            <span class="section-eyebrow">Dove Siamo</span>
+            <h2 class="section-title">Raggiungerci è semplicissimo.</h2>
+            <div class="location__grid">
+                <div class="location__map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2856.764!2d12.407!3d44.104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132cc4e000000001%3A0x1!2sVia+Orsa+Minore%2C+5%2C+47030+San+Mauro+Mare+FC!5e0!3m2!1sit!2sit!4v1"
+                        width="100%" height="100%" style="border:0; border-radius: 16px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Mappa Residence Veliero"></iframe>
+                </div>
+                <div class="location__info">
+                    <div class="location__card">
+                        <h3>Residence Veliero & Altamarea</h3>
+                        <address>
+                            Via Orsa Minore, 5<br>
+                            San Mauro Mare 47030 (FC)<br>
+                            Italia
+                        </address>
+                        <div class="location__contacts">
+                            <a href="tel:+390541346330" class="location__contact">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                                </svg>
+                                0541.346330
+                            </a>
+                            <a href="https://wa.me/393668909383" class="location__contact location__contact--wa"
+                                target="_blank" rel="noopener">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                </svg>
+                                366.890.9383
+                            </a>
+                            <a href="mailto:info@residenceveliero.it" class="location__contact">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="M22 7l-10 7L2 7" />
+                                </svg>
+                                info@residenceveliero.it
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <img src="https://www.residenceveliero.it/view/templates/bootstrapv3/pic/header/logo.png"
+                        alt="Residence Veliero Logo" class="footer__logo" loading="lazy">
+                    <p class="footer__tagline">La vacanza perfetta per la tua famiglia, dal 2003.</p>
+                </div>
+                <div class="footer__links">
+                    <a href="https://www.residenceveliero.it/popup/privacy_privacyit.html" target="_blank"
+                        rel="noopener">Privacy & Cookie Policy</a>
+                    <a href="https://www.residenceveliero.it/it/index.html">Sito Ufficiale</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Residence Veliero & Altamarea — Via Orsa Minore 5, San Mauro Mare (FC)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FLOATING WhatsApp Button -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <a href="https://wa.me/393668909383?text=Ciao!%20Vorrei%20informazioni%20sulla%20disponibilità%20degli%20appartamenti."
+        class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Chatta su WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        <span class="fab-whatsapp__pulse"></span>
+    </a>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CHATBOT WIDGET                                             -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Apri assistente virtuale">
+        <svg class="chat-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+    </button>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot__header">
+            <div class="chatbot__avatar">&#9875;</div>
+            <div class="chatbot__header-info">
+                <h4>Assistente Veliero</h4>
+                <span><span class="chatbot__status-dot"></span>Online &mdash; Rispondiamo subito</span>
+            </div>
+        </div>
+        <div class="chatbot__messages" id="chatMessages"></div>
+        <div class="chat-quick-actions" id="quickActions"></div>
+        <div class="chatbot__input">
+            <input type="text" id="chatInput" placeholder="Scrivi un messaggio..." autocomplete="off">
+            <button id="chatSend" aria-label="Invia">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* ══════════════════════════════════════════════════════════════
+           RESIDENCE VELIERO — Landing Page Scripts
+           Scroll reveals, countdown, testimonials, form handling
+           ══════════════════════════════════════════════════════════════ */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollReveal();
+            initCountdown();
+            initTestimonialsCarousel();
+            initFormHandling();
+            initParticles();
+            initSmoothScroll();
+            initTopBarShrink();
+        });
+
+        /* ─── Scroll Reveal with Intersection Observer ─── */
+        function initScrollReveal() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, parseInt(delay));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .usp-card, .service-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        /* ─── Countdown Timer ─── */
+        function initCountdown() {
+            const targetDate = new Date('2026-04-30T23:59:59');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdownDays').textContent = '00';
+                    document.getElementById('countdownHours').textContent = '00';
+                    document.getElementById('countdownMinutes').textContent = '00';
+                    document.getElementById('countdownSeconds').textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const daysEl = document.getElementById('countdownDays');
+                const hoursEl = document.getElementById('countdownHours');
+                const minutesEl = document.getElementById('countdownMinutes');
+                const secondsEl = document.getElementById('countdownSeconds');
+
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        /* ─── Testimonials Carousel ─── */
+        function initTestimonialsCarousel() {
+            const track = document.getElementById('testimonialTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('testimonialDots');
+
+            if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+            const cards = track.querySelectorAll('.testimonial-card');
+            let currentIndex = 0;
+
+            // Create dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = `testimonials__dot ${i === 0 ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Vai alla recensione ${i + 1}`);
+                dot.addEventListener('click', () => scrollToCard(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            function scrollToCard(index) {
+                if (index < 0) index = cards.length - 1;
+                if (index >= cards.length) index = 0;
+                currentIndex = index;
+
+                const card = cards[index];
+                const trackRect = track.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
+
+                track.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+
+                updateDots();
+            }
+
+            function updateDots() {
+                dotsContainer.querySelectorAll('.testimonials__dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            prevBtn.addEventListener('click', () => scrollToCard(currentIndex - 1));
+            nextBtn.addEventListener('click', () => scrollToCard(currentIndex + 1));
+
+            // Auto-scroll
+            let autoScroll = setInterval(() => {
+                scrollToCard(currentIndex + 1);
+            }, 5000);
+
+            track.addEventListener('mouseenter', () => clearInterval(autoScroll));
+            track.addEventListener('mouseleave', () => {
+                autoScroll = setInterval(() => scrollToCard(currentIndex + 1), 5000);
+            });
+
+            // Detect scroll position for dots sync
+            track.addEventListener('scroll', () => {
+                const scrollLeft = track.scrollLeft;
+                let closest = 0;
+                let closestDistance = Infinity;
+
+                cards.forEach((card, i) => {
+                    const distance = Math.abs(card.offsetLeft - scrollLeft - track.offsetWidth / 2 + card.offsetWidth / 2);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closest = i;
+                    }
+                });
+
+                if (closest !== currentIndex) {
+                    currentIndex = closest;
+                    updateDots();
+                }
+            });
+        }
+
+        /* ─── Form Handling ─── */
+        function initFormHandling() {
+            const form = document.getElementById('quoteForm');
+            if (!form) return;
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Validate
+                const required = form.querySelectorAll('[required]');
+                let valid = true;
+
+                required.forEach(input => {
+                    if (!input.value.trim() && input.type !== 'checkbox') {
+                        input.style.borderColor = '#F98AA5';
+                        valid = false;
+                    } else if (input.type === 'checkbox' && !input.checked) {
+                        valid = false;
+                    } else {
+                        input.style.borderColor = '#e8ecf0';
+                    }
+                });
+
+                if (!valid) {
+                    // Shake animation
+                    form.style.animation = 'shake 0.5s ease-out';
+                    setTimeout(() => form.style.animation = '', 500);
+                    return;
+                }
+
+                // Collect data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                console.log('Form submitted:', data);
+
+                // Show success state
+                const formCol = form.parentElement;
+                formCol.innerHTML = `
+            <div class="form form--success">
+                <div class="form__success-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <h3 class="form__success-title">Richiesta Inviata!</h3>
+                <p class="form__success-text">Grazie! Ti risponderemo entro 24 ore con il preventivo personalizzato per la tua famiglia.</p>
+            </div>
+        `;
+            });
+
+            // Live validation feedback
+            form.querySelectorAll('.form__input').forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.style.borderColor = '#2684BA';
+                });
+                input.addEventListener('blur', () => {
+                    if (!input.value.trim() && input.hasAttribute('required')) {
+                        input.style.borderColor = '#F98AA5';
+                    } else {
+                        input.style.borderColor = '#e8ecf0';
+                    }
+                });
+            });
+        }
+
+        /* ─── Floating Particles (subtle ocean bubbles) ─── */
+        function initParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 6 + 2;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 15 + 15;
+
+                particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, ${Math.random() * 0.12 + 0.03});
+            border-radius: 50%;
+            left: ${left}%;
+            bottom: -20px;
+            animation: floatUp ${duration}s linear ${delay}s infinite;
+            pointer-events: none;
+        `;
+                container.appendChild(particle);
+            }
+
+            // Add keyframe
+            if (!document.getElementById('particleStyles')) {
+                const style = document.createElement('style');
+                style.id = 'particleStyles';
+                style.textContent = `
+            @keyframes floatUp {
+                0% { transform: translateY(0) translateX(0); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '' : '-'}${Math.random() * 100}px); opacity: 0; }
+            }
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                20%, 60% { transform: translateX(-6px); }
+                40%, 80% { transform: translateX(6px); }
+            }
+        `;
+                document.head.appendChild(style);
+            }
+        }
+
+        /* ─── Smooth Scroll for anchor links ─── */
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 60; // top bar height
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        /* ─── Top Bar shrink on scroll ─── */
+        function initTopBarShrink() {
+            const topBar = document.querySelector('.top-bar');
+            if (!topBar) return;
+
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                if (scrollY > 200) {
+                    topBar.style.height = '38px';
+                    topBar.style.fontSize = '0.72rem';
+                } else {
+                    topBar.style.height = '';
+                    topBar.style.fontSize = '';
+                }
+
+                lastScroll = scrollY;
+            }, { passive: true });
+        }
+
+        /* ═══════════════════════════════════════════════════════════ */
+        /* CHATBOT ENGINE                                              */
+        /* ═══════════════════════════════════════════════════════════ */
+        (function initChatbot() {
+            var toggle = document.getElementById("chatbotToggle");
+            var chatbot = document.getElementById("chatbot");
+            var messages = document.getElementById("chatMessages");
+            var input = document.getElementById("chatInput");
+            var sendBtn = document.getElementById("chatSend");
+            var quickActions = document.getElementById("quickActions");
+
+            var KB = [
+                {
+                    keys: ["prezzo", "prezzi", "costo", "costi", "quanto", "listino", "tariffa", "tariffe"],
+                    answer: "I prezzi variano in base al periodo e tipologia. <b>Offerta Maggio-Giugno 2026:</b><br>&bull; Monolocale 3 posti da <b>&euro;890</b> (13 notti)<br>&bull; Bilocale 4 posti da <b>&euro;1.160</b> (14 notti)<br>&bull; Bilocale Vista Mare da <b>&euro;1.225</b><br>&bull; Trilocale intera stagione <b>&euro;5.900</b><br><br>Per un preventivo personalizzato: &#128222; <a href='tel:+390541346330'>0541.346330</a> o &#128172; <a href='https://wa.me/393668909383' target='_blank'>WhatsApp</a>"
+                },
+                {
+                    keys: ["appartamento", "appartamenti", "camera", "camere", "stanza", "stanze", "monolocale", "bilocale", "trilocale", "alloggio"],
+                    answer: "Abbiamo 3 tipologie al <b>Residence Veliero</b>:<br><br>&#127968; <b>Monolocale Vela Latina</b> (3 posti) &mdash; matrimoniale + singolo, angolo cottura, bagno, terrazzo<br><br>&#127968; <b>Bilocale Goletta</b> (4 posti) &mdash; camera matrimoniale, soggiorno con divano-letto, bagno, terrazzo<br><br>&#127968; <b>Trilocale Veliero</b> (5-6 posti) &mdash; 2 camere, soggiorno, 2 bagni, terrazzo<br><br>Al <b>Residence Altamarea</b>: bilocale con <b>vista mare</b>!<br>Tutti con aria condizionata, Wi-Fi, TV LCD, cucina completa."
+                },
+                {
+                    keys: ["bambin", "bimb", "neonat", "infant", "piccol", "figlio", "figlia", "famiglia", "famiglie", "kid", "seggiolon", "lettin", "passeggino", "pappa", "sterilizzat"],
+                    answer: "Siamo specializzati per famiglie con bambini! &#128118; Offriamo <b>GRATUITAMENTE</b>:<br><br>&check; Lettino da campeggio con lenzuolini<br>&check; Seggiolone con kit baby pappa<br>&check; Passeggino<br>&check; Sponde per il lettino<br>&check; Scalda biberon<br>&check; Sterilizzatore per microonde<br>&check; Vaschetta per il bagnetto<br>&check; Luce notturna<br>&check; Biciclette con seggiolini<br>&check; Spazio giochi dedicato<br><br>Basta chiederlo alla prenotazione!"
+                },
+                {
+                    keys: ["parcheggio", "auto", "macchina", "garage", "parking", "parcheggiare"],
+                    answer: "&#127359;&#65039; S&igrave;! Ogni appartamento ha <b>un posto auto GRATUITO</b> in parcheggio recintato (a ~400m). Una volta parcheggiato, non ti serve pi&ugrave; la macchina &mdash; siamo nella zona pedonale! Abbiamo anche una <b>stazione di ricarica per auto elettriche</b>."
+                },
+                {
+                    keys: ["mare", "spiaggia", "distanza", "lontano", "vicino", "ombrellone", "lettino mare", "stabilimento"],
+                    answer: "&#127958;&#65039; Siamo a soli <b>30 metri dal mare!</b> Basta attraversare la strada. San Mauro Mare ha la <b>Bandiera Verde dei Pediatri</b> &mdash; acqua limpida e bassa, perfetta per i bambini. Abbiamo <b>convenzioni con stabilimenti balneari</b> per ombrelloni e lettini!"
+                },
+                {
+                    keys: ["wifi", "wi-fi", "internet", "wireless", "connession"],
+                    answer: "&#128246; S&igrave;, il <b>Wi-Fi &egrave; GRATUITO</b> in tutta la struttura, in tutti gli appartamenti!"
+                },
+                {
+                    keys: ["aria condizionata", "condizionat", "climatizz", "caldo", "fresco"],
+                    answer: "&#10052;&#65039; S&igrave;, <b>tutti</b> gli appartamenti hanno l'aria condizionata <b>compresa nel prezzo</b>!"
+                },
+                {
+                    keys: ["cibo", "mangiare", "ristorante", "cucina", "cucinare", "pranzo", "cena", "colazione", "piadina", "romagnol"],
+                    answer: "&#127829; Hai diverse opzioni:<br><br>&bull; <b>Cucina in appartamento</b> &mdash; completa di tutto, frigo, microonde<br>&bull; <b>Cibo in Relax</b> &mdash; ordini pranzo/cena e te lo consegniamo in appartamento!<br>&bull; <b>Rosticceria</b> con piatti pronti nelle vicinanze<br>&bull; <b>Ristoranti</b> nel paese con piatti anche da asporto<br>&bull; <b>Centro commerciale</b> a 1 km (il pi&ugrave; grande della regione)"
+                },
+                {
+                    keys: ["check-in", "check in", "arrivo", "orario", "check-out", "check out", "partenza"],
+                    answer: "&#128336; Per gli orari esatti di check-in e check-out contatta direttamente la struttura: &#128222; <a href='tel:+390541346330'>0541.346330</a> o &#9993;&#65039; <a href='mailto:info@residenceveliero.it'>info@residenceveliero.it</a>"
+                },
+                {
+                    keys: ["prenota", "prenotare", "prenotazione", "disponibil", "reservation", "booking"],
+                    answer: "&#128203; Puoi prenotare in diversi modi:<br><br>&#128222; Telefono: <a href='tel:+390541346330'>0541.346330</a><br>&#128172; WhatsApp: <a href='https://wa.me/393668909383' target='_blank'>366.890.9383</a><br>&#9993;&#65039; Email: <a href='mailto:info@residenceveliero.it'>info@residenceveliero.it</a><br>&#128221; Modulo sul sito<br><br>Rispondiamo entro <b>24 ore</b>! Prenotando dal sito hai: miglior prezzo garantito, cancellazione flessibile e vacanza assicurata!"
+                },
+                {
+                    keys: ["dove", "posizione", "indirizzo", "come arrivare", "raggiungere", "mappa", "navigatore", "strada"],
+                    answer: "&#128205; Siamo in <b>Via Orsa Minore, 5 &mdash; San Mauro Mare 47030 (FC)</b>, Italia. Nella centralissima isola pedonale, a 30 metri dal mare."
+                },
+                {
+                    keys: ["offert", "promozione", "sconto", "sconti", "risparmia", "economico"],
+                    answer: "&#127991;&#65039; Offerte attive <b>Estate 2026</b>:<br><br>1&#65039;&#8419; <b>Maggio-Giugno 2026</b> &mdash; sconti dal 20% al 60%!<br>2&#65039;&#8419; <b>Prenota Prima e Risparmia</b> &mdash; condizioni esclusive<br>3&#65039;&#8419; <b>Viaggia Leggero</b> &mdash; tutti i servizi bambini GRATIS<br><br>&#9888;&#65039; Le offerte non sono cumulabili. Min. 5 notti.<br><a href='#preventivo'>Richiedi preventivo &rarr;</a>"
+                },
+                {
+                    keys: ["biancheria", "lenzuola", "asciugaman", "cambio", "pulizia", "pulito"],
+                    answer: "&#128716; La <b>prima fornitura</b> di biancheria &egrave; <b>INCLUSA</b>.<br>Cambio successivo a richiesta:<br>&bull; Lenzuola: &euro;6/persona<br>&bull; Set bagno (3 asciugamani): &euro;5<br>Appartamenti <b>sanificati</b> e stoviglie sterilizzate a 90&deg;!"
+                },
+                {
+                    keys: ["animale", "animali", "cane", "gatto", "pet", "dog"],
+                    answer: "&#128021; Per informazioni sulla policy animali, contattaci: &#128222; <a href='tel:+390541346330'>0541.346330</a> o &#128172; <a href='https://wa.me/393668909383' target='_blank'>WhatsApp</a>"
+                },
+                {
+                    keys: ["recension", "opinioni", "giudizi", "feedback", "stelle", "voto", "tripadvisor"],
+                    answer: "&#11088;&#11088;&#11088;&#11088;&#11088; I nostri ospiti ci adorano!<br><br>&#128172; <i>\"Davvero eccellente. Struttura nuova, molto pulita, vicinissima alla spiaggia.\"</i> &mdash; Antobott, Arezzo<br><br>&#128172; <i>\"Mi sono innamorata di quel posto! Ho gi&agrave; prenotato per l'anno prossimo!\"</i> &mdash; Viviana, Milano<br><br>&#128172; <i>\"Marco e Paolo ci hanno coccolato per due settimane.\"</i> &mdash; Irene, Ivrea"
+                },
+                {
+                    keys: ["altamarea", "vista mare", "vista", "panoram"],
+                    answer: "&#127754; Il <b>Residence Altamarea</b> &egrave; situato accanto al Veliero, con la stessa qualit&agrave; ma con il bonus della <b>vista mare panoramica</b>! Bilocali con terrazzo vista mare."
+                },
+                {
+                    keys: ["bici", "bicicletta", "biciclette", "pedalare", "ciclabile"],
+                    answer: "&#128690; S&igrave;! Le <b>biciclette sono GRATUITE</b> per tutti gli ospiti, dotate anche di <b>seggiolini per bambini</b>!"
+                },
+                {
+                    keys: ["lavanderia", "lavatrice", "lavare", "asciugatrice"],
+                    answer: "&#128085; S&igrave;, servizio di <b>lavanderia con lavatrice e asciugatrice a gettoni</b> a disposizione."
+                },
+                {
+                    keys: ["cassaforte", "sicurezza", "oggetti di valore", "safe"],
+                    answer: "&#128274; S&igrave;, tutti gli appartamenti hanno una <b>cassetta di sicurezza</b>."
+                },
+                {
+                    keys: ["business", "lavoro", "fiera", "rimini", "congress"],
+                    answer: "&#128188; Perfetti anche per <b>soggiorni di lavoro</b>! Vicini alla Fiera di Rimini, Wi-Fi gratuito e massima tranquillit&agrave;."
+                },
+                {
+                    keys: ["contatt", "telefono", "email", "chiama", "scrivere", "whatsapp", "numero"],
+                    answer: "&#128222; Ecco come contattarci:<br><br>&#128241; Telefono: <a href='tel:+390541346330'>0541.346330</a><br>&#128172; WhatsApp: <a href='https://wa.me/393668909383' target='_blank'>366.890.9383</a><br>&#9993;&#65039; Email: <a href='mailto:info@residenceveliero.it'>info@residenceveliero.it</a><br><br>Rispondiamo entro 24 ore!"
+                },
+                {
+                    keys: ["san mauro", "paese", "localit", "riviera", "romagn", "dintorni", "zona"],
+                    answer: "&#127958;&#65039; <b>San Mauro Mare</b> &egrave; perfetto per le famiglie:<br><br>&bull; &#127941; Bandiera Verde dei Pediatri<br>&bull; &#128694; Isola pedonale, zero traffico<br>&bull; &#127754; Acqua limpida e bassa<br>&bull; &#127914; Animazione in spiaggia e serale<br>&bull; &#128717;&#65039; Centro commerciale a 1 km<br>&bull; &#127795; Due parchi con aree giochi"
+                },
+                {
+                    keys: ["grazie", "perfetto", "ok", "capito", "chiaro", "gentile", "ottimo"],
+                    answer: "Grazie a te! &#128522; Se hai altre domande, sono sempre qui. Puoi anche contattarci: &#128222; <a href='tel:+390541346330'>0541.346330</a> o &#128172; <a href='https://wa.me/393668909383' target='_blank'>WhatsApp</a>. Buone vacanze! &#127958;&#65039;"
+                },
+                {
+                    keys: ["ciao", "salve", "buongiorno", "buonasera", "hello", "hey", "hola"],
+                    answer: "Ciao! &#128075; Benvenuto al Residence Veliero & Altamarea! Come posso aiutarti? Chiedimi dei nostri appartamenti, servizi per bambini, prezzi, offerte, o qualsiasi altra cosa!"
+                }
+            ];
+
+            var defaultAnswer = "Non ho trovato una risposta specifica, ma posso metterti in contatto con il nostro staff! &#128522;<br><br>&#128222; <a href='tel:+390541346330'>0541.346330</a><br>&#128172; <a href='https://wa.me/393668909383' target='_blank'>WhatsApp 366.890.9383</a><br>&#9993;&#65039; <a href='mailto:info@residenceveliero.it'>info@residenceveliero.it</a>";
+
+            var quickBtns = [
+                { label: "&#128176; Prezzi", query: "prezzi" },
+                { label: "&#127968; Appartamenti", query: "appartamenti" },
+                { label: "&#128118; Bambini", query: "servizi bambini" },
+                { label: "&#127958; Spiaggia", query: "spiaggia" },
+                { label: "&#127991; Offerte", query: "offerte" },
+                { label: "&#128222; Contatti", query: "contatti" }
+            ];
+
+            function addMsg(text, isUser) {
+                var div = document.createElement("div");
+                div.className = "chat-msg chat-msg--" + (isUser ? "user" : "bot");
+                div.innerHTML = text;
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function showTyping() {
+                var div = document.createElement("div");
+                div.className = "chat-typing";
+                div.id = "typingIndicator";
+                div.innerHTML = "<span></span><span></span><span></span>";
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function hideTyping() {
+                var t = document.getElementById("typingIndicator");
+                if (t) t.remove();
+            }
+
+            function findAnswer(query) {
+                var q = query.toLowerCase();
+                var bestMatch = null;
+                var bestScore = 0;
+                for (var i = 0; i < KB.length; i++) {
+                    var score = 0;
+                    for (var j = 0; j < KB[i].keys.length; j++) {
+                        if (q.indexOf(KB[i].keys[j]) !== -1) {
+                            score += KB[i].keys[j].length;
+                        }
+                    }
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = KB[i];
+                    }
+                }
+                return bestMatch ? bestMatch.answer : defaultAnswer;
+            }
+
+            function handleSend(text) {
+                var q = (text || input.value).trim();
+                if (!q) return;
+                addMsg(q, true);
+                input.value = "";
+                showTyping();
+                var delay = 600 + Math.random() * 800;
+                setTimeout(function () {
+                    hideTyping();
+                    addMsg(findAnswer(q), false);
+                }, delay);
+            }
+
+            toggle.addEventListener("click", function () {
+                toggle.classList.toggle("active");
+                chatbot.classList.toggle("open");
+                if (chatbot.classList.contains("open") && messages.children.length === 0) {
+                    setTimeout(function () {
+                        addMsg("Ciao! &#128075; Sono l'assistente virtuale del <b>Residence Veliero & Altamarea</b>.<br><br>Come posso aiutarti? Puoi chiedermi informazioni su appartamenti, prezzi, servizi per bambini, offerte e molto altro!", false);
+                    }, 400);
+                }
+                if (chatbot.classList.contains("open")) input.focus();
+            });
+
+            sendBtn.addEventListener("click", function () { handleSend(); });
+            input.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") handleSend();
+            });
+
+            for (var k = 0; k < quickBtns.length; k++) {
+                (function (btn) {
+                    var el = document.createElement("button");
+                    el.className = "chat-quick-btn";
+                    el.innerHTML = btn.label;
+                    el.addEventListener("click", function () { handleSend(btn.query); });
+                    quickActions.appendChild(el);
+                })(quickBtns[k]);
+            }
+        })();
+
+    </script>
+</body>
+
+</html>
