@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/veliero-corporate-smart-living.html"
+    },
+    {
+      "source": "/corporate-smart-living",
+      "destination": "/veliero-corporate-smart-living.html"
+    },
+    {
+      "source": "/smart-living",
+      "destination": "/veliero-smart-living-landing.html"
+    },
+    {
+      "source": "/estate",
+      "destination": "/index.html"
+    }
+  ]
+}
